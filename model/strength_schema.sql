@@ -30,9 +30,9 @@ CREATE TABLE exercises (
     setTotal INT NOT NULL,
     reptitionsGoalPerSet VARCHAR(255) NOT NULL,
     reptitionsCompletedPerSet VARCHAR(255) NOT NULL,
-    weightUsedPerSet VARCHAR(255) NOT NULL,
-    timeUsedPerSet VARCHAR(255) NOT NULL,
-    restUsedPerSet VARCHAR(255) NOT NULL,
+    weightUsedPerSet VARCHAR(255) ,
+    timeUsedPerSet VARCHAR(255) ,
+    restUsedPerSet VARCHAR(255) ,
     PRIMARY KEY (id)
 );
 
