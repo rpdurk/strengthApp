@@ -230,21 +230,11 @@ const PersistentDrawerLeft = () => {
         })}
       >
         <Router>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/create">
-            <CreateWorkout />
-          </Route>
-          <Route path="/log">
-            <LogWorkout />
-          </Route>
-          <Route path="/progress">
-            <Progress />
-          </Route>
-          <Route path="/account">
-            <Account />
-          </Route>
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/create" component={CreateWorkout} />
+          <Route path="/log" component={LogWorkout} />
+          <Route path="/progress" component={Progress} />
+          <Route path="/account" component={Account} />
         </Router>
       </main>
     </div>
