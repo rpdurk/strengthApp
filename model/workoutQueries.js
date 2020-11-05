@@ -9,7 +9,7 @@
  *
  */
 const findAllWorkouts = 'SELECT id, workoutName FROM workouts;';
-const findWorkoutByIdQuery = 'SELECT id, workooutName FROM workouts WHERE id = ?;';
+const findWorkoutByIdQuery = 'SELECT id, workoutName FROM workouts WHERE id = ?;';
 const findWorkoutByWorkoutName =
     'SELECT id FROM workouts WHERE workoutName = ?;';
 const insertWorkout = 'INSERT INTO workouts (workoutName, userId, workoutDate, exercsises) VALUES (?, ?, ?, ?);';
