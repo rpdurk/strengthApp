@@ -16,11 +16,17 @@ function App() {
     <Router>
       <Route exact path="/" component={SignIn} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/dashboard" component={Drawer} />
-      <Route path="/create" component={Drawer} />
-      <Route path="/log" component={Drawer} />
-      <Route path="/progress" component={Drawer} />
-      <Route path="/account" component={Drawer} />
+      <Route path={["/dashboard", "/create", "/log", "/progress", "/account"]}>
+        <Drawer>
+          <Switch>
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/create" component={CreateWorkout} />
+            <Route path="/log" component={LogWorkout} />
+            <Route path="/progress" component={Progress} />
+            <Route path="/account" component={Account} />
+          </Switch>
+        </Drawer>
+      </Route>
       {/* Manny's routes below */}
       {/* <Route path="/signup" component={WrappedSignUp} />
       <Route path="/signin" component={WrappedSignIn} /> */}
