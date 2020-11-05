@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./pages/common/components/Navbar";
 import SignIn from "./pages/common/components/SignIn";
+import SignUp from "./pages/common/components/SignUp";
 import Dashboard from "./pages/common/components/Dashboard";
 import CreateWorkout from "./pages/common/components/CreateWorkout";
 import LogWorkout from "./pages/common/components/LogWorkout";
@@ -16,6 +17,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <SignIn />
+        </Route>
+        <Route exact path="/signup">
+          <SignUp />
         </Route>
         <Route path="/dashboard">
           <Navbar />
