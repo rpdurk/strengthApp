@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./pages/common/components/Navbar";
-import SignIn from "./pages/common/components/SignIn";
-import SignUp from "./pages/common/components/SignUp";
-import Dashboard from "./pages/common/components/Dashboard";
-import CreateWorkout from "./pages/common/components/CreateWorkout";
-import LogWorkout from "./pages/common/components/LogWorkout";
-import Progress from "./pages/common/components/Progress";
-import Account from "./pages/common/components/Account";
+import Drawer from "./pages/common/components/Drawer";
+import SignIn from "./pages/Signin";
+import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
+import CreateWorkout from "./pages/CreateWorkout";
+import LogWorkout from "./pages/LogWorkout";
+import Progress from "./pages/Progress";
+import Account from "./pages/Account";
 
 import { WrappedSignUp, WrappedSignIn } from "./pages/Viewer";
 
@@ -22,23 +22,23 @@ function App() {
           <SignUp />
         </Route>
         <Route path="/dashboard">
-          <Navbar />
+          <Drawer />
           <Dashboard />
         </Route>
         <Route path="/create">
-          <Navbar />
+          <Drawer />
           <CreateWorkout />
         </Route>
         <Route path="/log">
-          <Navbar />
+          <Drawer />
           <LogWorkout />
         </Route>
         <Route path="/progress">
-          <Navbar />
+          <Drawer />
           <Progress />
         </Route>
         <Route path="/account">
-          <Navbar />
+          <Drawer />
           <Account />
         </Route>
       </Switch>
