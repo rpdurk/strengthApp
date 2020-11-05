@@ -14,27 +14,14 @@ import { WrappedSignUp, WrappedSignIn } from "./pages/Viewer";
 function App() {
   return (
     <Router>
-      <Route exact path="/">
-        <SignIn />
-      </Route>
-      <Route path="/signup">
-        <SignUp />
-      </Route>
-      <Route path="/dashboard">
-        <Drawer />
-      </Route>
-      <Route path="/create">
-        <Drawer />
-      </Route>
-      <Route path="/log">
-        <Drawer />
-      </Route>
-      <Route path="/progress">
-        <Drawer />
-      </Route>
-      <Route path="/account">
-        <Drawer />
-      </Route>
+      <Route exact path="/" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/dashboard" component={Drawer} />
+      <Route path="/create" component={Drawer} />
+      <Route path="/log" component={Drawer} />
+      <Route path="/progress" component={Drawer} />
+      <Route path="/account" component={Drawer} />
+      {/* Manny's routes below */}
       {/* <Route path="/signup" component={WrappedSignUp} />
       <Route path="/signin" component={WrappedSignIn} /> */}
     </Router>
