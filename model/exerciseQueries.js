@@ -27,8 +27,12 @@ CREATE TABLE exercises (
  * find
  *
  */
-const findAllWorkouts = 'SELECT id, workoutName FROM workouts;';
-const findWorkoutByIdQuery = 'SELECT id, workooutName FROM workouts WHERE id = ?;';
+const findAllExercises = 'SELECT id, exerciseName FROM exercises;';
+const findMuscleUsedByExercise = 'SELECT id, musclesUsed FROM exercises WHERE id = ?;';
+const findSetTotalByExercise = 'SELECT id, setTotal from exercises WHERE id = ?;';
+const findRepetitionGoalBySet = 'SELECT id, repetitionGoalPerSet from exercises WHERE id = ?;';
+// const findRepetitionsCompletedPerSet = 'SELECT id, repetitionGoalPerSet from exercises WHERE id = ?;';
+const findWorkoutByIdQuery = 'SELECT id, workoutName FROM workouts WHERE id = ?;';
 const findWorkoutByWorkoutName =
     'SELECT id FROM workouts WHERE workoutName = ?;';
 const insertWorkout = 'INSERT INTO workouts (workoutName, userId, workoutDate, exercsises) VALUES (?, ?, ?, ?);';

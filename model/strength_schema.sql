@@ -28,7 +28,7 @@ CREATE TABLE exercises (
     workoutName INT references workouts(id),
     exerciseDate DATE NOT NULL,
     setTotal INT NOT NULL,
-    reptitionsGoalPerSet VARCHAR(255) NOT NULL,
+    reptitionGoalPerSet VARCHAR(255) NOT NULL,
     reptitionsCompletedPerSet VARCHAR(255) NOT NULL,
     weightUsedPerSet VARCHAR(255) NOT NULL,
     timeUsedPerSet VARCHAR(255) NOT NULL,
