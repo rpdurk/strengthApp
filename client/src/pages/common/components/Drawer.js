@@ -82,14 +82,12 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(5),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
-    // ...theme.mixins.toolbar,
-    marginTop: "48px",
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -100,8 +98,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const PersistentDrawerLeft = () => {
-  // const { history } = props;
+const PersistentDrawerLeft = props => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -229,13 +226,7 @@ const PersistentDrawerLeft = () => {
           [classes.contentShift]: open,
         })}
       >
-        <Router>
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/create" component={CreateWorkout} />
-          <Route path="/log" component={LogWorkout} />
-          <Route path="/progress" component={Progress} />
-          <Route path="/account" component={Account} />
-        </Router>
+        {props.children}
       </main>
     </div>
   );
