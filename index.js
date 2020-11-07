@@ -1,9 +1,9 @@
-require('dotenv')
-  .config();
+// require('dotenv')
+//   .config();
 const express = require('express');
 const routes = require('./routes');
 
-require('./services/passport');
+// require('./services/passport');
 
 const app = express();
 
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 
