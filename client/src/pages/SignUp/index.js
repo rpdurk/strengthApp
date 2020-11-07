@@ -1,4 +1,3 @@
-<<<<<<< HEAD:client/src/pages/common/components/SignUp.js
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -13,20 +12,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-=======
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
->>>>>>> 3d0dc19f894ed86f8743c9a36c5aa666b1eb9e46:client/src/pages/SignUp/index.js
 
 function Copyright() {
   return (
@@ -124,15 +109,12 @@ export default function SignUp() {
                 autoComplete='current-password'
               />
             </Grid>
-<<<<<<< HEAD:client/src/pages/common/components/SignUp.js
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value='allowExtraEmails' color='primary' />}
                 label='I want to receive inspiration, promotions and updates via email.'
               />
             </Grid>
-=======
->>>>>>> 3d0dc19f894ed86f8743c9a36c5aa666b1eb9e46:client/src/pages/SignUp/index.js
           </Grid>
           <Button
             type='submit'
