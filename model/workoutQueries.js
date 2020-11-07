@@ -9,16 +9,26 @@
  *    PRIMARY KEY (id)
  *
  */
-// Changed this to be by userId
-const findAllWorkoutsByUserId =
+
+const findAllWorkoutsByUserId = 
   'SELECT id, workoutName FROM workouts WHERE userId = ?;';
 const findWorkoutByIdQuery =
-  'SELECT id, workooutName FROM workouts WHERE id = ?;';
+  'SELECT id, workoutName FROM workouts WHERE id = ?;';
 const findWorkoutByWorkoutName =
   'SELECT id FROM workouts WHERE workoutName = ?;';
 const insertWorkout =
-  'INSERT INTO workout (workoutName, userId, workoutDate, exercsises) VALUES (?, ?, ?, ?);';
-const deleteWorkoutQuery = 'DELETE FROM workout WHERE ID = ?;';
+  'INSERT INTO workout (workoutName, userId, workoutDate, exercises) VALUES (?, ?, ?, ?);';
+const deleteWorkoutQuery = 
+ 'DELETE FROM workout WHERE ID = ?;';
+
+// seed 
+// 'INSERT INTO workout (workoutName, userId, workoutDate, exercises) 
+// VALUES (
+// 'BackDay',
+// 1,
+// '2020-11-04',
+// {name: curls, name: squat},
+// );
 
 module.exports = {
   findAllWorkoutsByUserId,

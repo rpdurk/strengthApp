@@ -28,10 +28,9 @@ const inserExerciseQuery =
 const deleteExerciseById = 'DELETE FROM exercises WHERE id = ?;';
 
 module.exports = {
-  findAllExercisesByUserId,
-  findExerciseByWorkoutId,
-  findExerciseById,
-  findExerciseByName,
-  inserExerciseQuery,
-  deleteExerciseById,
+    findAllWorkouts,
+    findWorkoutByIdQuery,
+    findWorkoutByWorkoutName,
+    insertWorkout,
+    deleteWorkoutQuery,
 };

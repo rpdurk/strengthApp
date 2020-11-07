@@ -3,7 +3,7 @@ const {
   findExerciseByWorkoutId,
   findExerciseById,
   findExerciseByName,
-  inserExerciseQuery,
+  insertExerciseQuery,
   deleteExerciseById,
   findAllExercisesByMuscle,
 } = require('./exerciseQueries');
@@ -107,7 +107,7 @@ const setExercise = async (exercise) => {
   } = exercise;
 
   try {
-    const [results] = await connection.query(inserExerciseQuery, [
+    const [results] = await connection.query(insertExerciseQuery, [
       name,
       muscleUsed,
       userId,
