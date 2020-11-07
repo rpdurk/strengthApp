@@ -82,7 +82,7 @@ const getAllExercisesByMuscle = async (muscleUsed) => {
  * @param {String} exercise.muscleUsed - Can be empty - Muscle used with this exercise
  * @param {Number} exercise.userId -  A User ID to be associated with this exercise.
  * @param {Number} exercise.workoutId - A Workout ID to be associated with this exercise.
- * @param {Date} exercise.date - Date as in SQL -> Format 'YYYY-MM-DD';
+ * @param {Date}   exercise.date - Date as in SQL -> Format 'YYYY-MM-DD';
  * @param {Number} exercise.setTotal  - Total amount of sets
  * @param {String} exercise.repsGoalPerSet - This would be a Stringified Object. Formatted as {'set0': 15, 'set1' : 30}
  * @param {String} exercise.repsCompletedPerSet - This would be a Stringified Object. Formatted as {'set0': 8, 'set1' : 12}
