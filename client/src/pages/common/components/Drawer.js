@@ -1,6 +1,12 @@
 import React from "react";
 import clsx from "clsx";
-import { useHistory, withRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+  withRouter,
+} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setViewerToken } from "../../Viewer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -26,6 +32,12 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
+import Dashboard from "../../Dashboard";
+import CreateWorkout from "../../CreateWorkout";
+import LogWorkout from "../../LogWorkout";
+import Progress from "../../Progress";
+import Account from "../../Account";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -46,6 +58,7 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -69,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(5),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -85,8 +98,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const PersistentDrawerLeft = () => {
-  // const { history } = props;
+const PersistentDrawerLeft = props => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -209,6 +221,13 @@ const PersistentDrawerLeft = () => {
           })}
         </List>
       </Drawer>
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
+      >
+        {props.children}
+      </main>
     </div>
   );
 };

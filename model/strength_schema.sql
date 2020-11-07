@@ -16,7 +16,7 @@ CREATE TABLE workouts (
     workoutName VARCHAR(255) NOT NULL,
     userId INT references users(id),
     workoutDate DATE NOT NULL,
-    exercises VARCHAR(3000),
+    exercises VARCHAR(255),
     PRIMARY KEY (id)
 );
 
@@ -30,9 +30,9 @@ CREATE TABLE exercises (
     setTotal INT NOT NULL,
     reptitionGoalPerSet VARCHAR(255) NOT NULL,
     reptitionsCompletedPerSet VARCHAR(255) NOT NULL,
-    weightUsedPerSet VARCHAR(255) NOT NULL,
-    timeUsedPerSet VARCHAR(255) NOT NULL,
-    restUsedPerSet VARCHAR(255) NOT NULL,
+    weightUsedPerSet VARCHAR(255) ,
+    timeUsedPerSet VARCHAR(255) ,
+    restUsedPerSet VARCHAR(255) ,
     PRIMARY KEY (id)
 );
 

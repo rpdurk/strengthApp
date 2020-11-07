@@ -35,7 +35,7 @@ const findRepetitionGoalBySet = 'SELECT id, repetitionGoalPerSet from exercises 
 const findWorkoutByIdQuery = 'SELECT id, workoutName FROM workouts WHERE id = ?;';
 const findWorkoutByWorkoutName =
     'SELECT id FROM workouts WHERE workoutName = ?;';
-const insertWorkout = 'INSERT INTO workouts (workoutName, userId, workoutDate, exercsises) VALUES (?, ?, ?, ?);';
+const insertWorkout = 'INSERT INTO workouts (workoutName, userId, workoutDate, exercises) VALUES (?, ?, ?, ?);';
 const deleteWorkoutQuery = 'DELETE FROM workouts WHERE ID = ?;';
 
 module.exports = {
