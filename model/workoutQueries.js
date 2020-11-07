@@ -9,7 +9,9 @@
  *    PRIMARY KEY (id)
  *
  */
-const findAllWorkouts = 'SELECT id, workoutName FROM workouts;';
+// Changed this to be by userId
+const findAllWorkoutsByUserId =
+  'SELECT id, workoutName FROM workouts WHERE userId = ?;';
 const findWorkoutByIdQuery =
   'SELECT id, workooutName FROM workouts WHERE id = ?;';
 const findWorkoutByWorkoutName =
@@ -19,7 +21,7 @@ const insertWorkout =
 const deleteWorkoutQuery = 'DELETE FROM workout WHERE ID = ?;';
 
 module.exports = {
-  findAllWorkouts,
+  findAllWorkoutsByUserId,
   findWorkoutByIdQuery,
   findWorkoutByWorkoutName,
   insertWorkout,
