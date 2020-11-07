@@ -78,3 +78,10 @@ const setUserBiometrics = async (biometrics) => {
     throw new Error(err);
   }
 };
+
+module.exports = {
+  getUserHeightByUserID,
+  getUserWeightByUserID,
+  getUserWeightDateByUserID,
+  setUserBiometrics,
+};
