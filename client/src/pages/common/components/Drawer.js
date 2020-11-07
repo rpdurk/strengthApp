@@ -1,16 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useHistory,
-  withRouter,
-} from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setViewerToken } from "../../Viewer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
