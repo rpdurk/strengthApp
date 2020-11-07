@@ -6,7 +6,7 @@ const {
   returnAllExercisesByName,
   addExercise,
   deleteExercise,
-} = require('../../controllers/exerciseController');
+} = require('../../../controllers/exerciseController');
 // GET Routes
 // GET -> /:userId          -> Returns All by User
 // GET -> /:exerciseId              -> Returns Individual
@@ -26,8 +26,9 @@ router.get('/:workoutId', returnAllExerciseByWorkoutId);
 router.get('/:exerciseName', returnAllExercisesByName);
 
 // Add an Exercise
-router.post('/exercise', addExercise);
+router.post('/add', addExercise);
 
 // Delete an Exercise
 router.delete('/:exerciseId', deleteExercise);
+
 module.exports = router;
