@@ -9,6 +9,7 @@
  *    PRIMARY KEY (id)
  *
  */
+
 const findAllWorkoutsByUserId = 
   'SELECT id, workoutName FROM workouts WHERE userId = ?;';
 const findWorkoutByIdQuery =

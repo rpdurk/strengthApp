@@ -5,18 +5,18 @@ const {
   findExerciseByName,
   insertExerciseQuery,
   deleteExerciseById,
+  findAllExercisesByMuscle,
 } = require('./exerciseQueries');
 
-const connection = require('../config/connection');
-
+const connection = require('../config/connection'); // DB Connection
 /**
- *
- * @param {Number} userId - Gets Exercises by user ID from SQL DB.
+ * Gets Excercises by user ID from SQL DB.
+ * @param {Number} userId - User ID of who's exercises to return
  */
 const getAllExercisesByUserID = async (userId) => {
   try {
-    const [firstRow] = await connection.query(findAllExercisesByUserId, userId);
-    return firstRow;
+    const [results] = await connection.query(findAllExercisesByUserId, userId);
+    return results;
   } catch (err) {
     if (err) console.error(err);
     throw new Error(err);
@@ -24,10 +24,10 @@ const getAllExercisesByUserID = async (userId) => {
 };
 
 /**
- *
- * @param {Number} workoutId - Gets Exercises by workout ID from SQL DB
+ * Gets Exercuses by workout ID from SQL DB
+ * @param {Number} workoutId - Workout ID of which exercise to return
  */
-const getExerciseByWorkoutId = async (workoutId) => {
+const getAllExerciseByWorkoutId = async (workoutId) => {
   try {
     const [results] = await connection.query(
       findExerciseByWorkoutId,
@@ -39,27 +39,37 @@ const getExerciseByWorkoutId = async (workoutId) => {
   }
 };
 /**
- *
- * @param {Number} exerciseId - Finds an Exercise by ID
+ * Finds an Excercise by ID
+ * @param {Number} exerciseId - Exercise ID to be found
  */
-const getExerciseById = async (exerciseId) => {
+const getAnExerciseById = async (exerciseId) => {
   try {
     const [results] = await connection.query(findExerciseById, exerciseId);
-    // console.log(results);
     return results;
   } catch (err) {
     throw new Error(err);
   }
 };
 /**
- *
- * @param {String} exerciseName - Finds an Exercise by Name
+ * Finds an Excercise by Name
+ * @param {String} exerciseName - Exercise of name.
  */
-const getExerciseByName = async (exerciseName) => {
+const getAllExercisesByName = async (exerciseName) => {
   try {
     const [results] = await connection.query(findExerciseByName, exerciseName);
-    console.log(results);
-    // return results;
+    return results;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+const getAllExercisesByMuscle = async (muscleUsed) => {
+  try {
+    const [results] = await connection.query(
+      findAllExercisesByMuscle,
+      muscleUsed
+    );
+    return results;
   } catch (err) {
     throw new Error(err);
   }
@@ -110,8 +120,6 @@ const setExercise = async (exercise) => {
       timeUsedPerSet,
       restTimeUsedPerSet,
     ]);
-    console.log(results);
-    // return results;
   } catch (err) {
     throw new Error(err);
   }
@@ -129,6 +137,17 @@ const removeExerciseById = async (exerciseId) => {
     throw new Error(err);
   }
 };
+
+module.exports = {
+  getAllExercisesByUserID,
+  getAllExerciseByWorkoutId,
+  getAnExerciseById,
+  getAllExercisesByName,
+  getAllExercisesByMuscle,
+  setExercise,
+  removeExerciseById,
+};
+
 // For testing & Reference.
 // const exercise = {
 //   name: 'ExerciseName 3',
@@ -143,12 +162,3 @@ const removeExerciseById = async (exerciseId) => {
 //   timeUsedPerSet: '{set1 : 60, set2 : 80}',
 //   restTimeUsedPerSet: '{set1 : 60, set2 : 600}',
 // };
-
-module.exports = {
-  getAllExercisesByUserID,
-  getExerciseByWorkoutId,
-  getExerciseById,
-  getExerciseByName,
-  setExercise,
-  removeExerciseById,
-};

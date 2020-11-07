@@ -1,16 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useHistory,
-  withRouter,
-} from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setViewerToken } from "../../Viewer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -31,12 +24,6 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-
-import Dashboard from "../../Dashboard";
-import CreateWorkout from "../../CreateWorkout";
-import LogWorkout from "../../LogWorkout";
-import Progress from "../../Progress";
-import Account from "../../Account";
 
 const drawerWidth = 240;
 
@@ -82,7 +69,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(5),
+    padding: theme.spacing(7),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
