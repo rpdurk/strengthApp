@@ -17,7 +17,8 @@ const findWorkoutByWorkoutName =
   'SELECT id FROM workouts WHERE workoutName = ?;';
 const insertWorkout =
   'INSERT INTO workout (workoutName, userId, workoutDate, exercises) VALUES (?, ?, ?, ?);';
-const deleteWorkoutQuery = 'DELETE FROM workout WHERE ID = ?;';
+const deleteWorkoutQuery = 
+ 'DELETE FROM workout WHERE ID = ?;';
 
 // seed 
 // 'INSERT INTO workout (workoutName, userId, workoutDate, exercises) 

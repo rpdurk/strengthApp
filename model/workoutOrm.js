@@ -10,9 +10,8 @@ const connection = require('../config/connection');
 
 /**
  *
- * @param {Number} userId - Gets Exercises by user ID from SQL DB.
+ * @param {Number} userId - Gets Workouts by user ID from SQL DB.
  */
-
  const getAllWorkoutsByUserId = async (userId) => {
    try {
     const [firstRow] = await connection.query(findAllWorkoutsByUserId, userId);
@@ -25,7 +24,7 @@ const connection = require('../config/connection');
 
  /**
  *
- * @param {Number} workoutId - Gets Exercises by user ID from SQL DB.
+ * @param {Number} workoutId - Gets Workouts by user ID from SQL DB.
  */
 
 const getWorkoutsIdQuery = async (workoutId) => {
