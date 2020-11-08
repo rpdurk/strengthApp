@@ -3,13 +3,18 @@ const LocalStrategy = require('passport-local').Strategy;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-const { comparePassword, fetchUserByUsernameFromDb, fetchUserByIdFromDb } = require('../model/userOrm');
+const {
+  comparePassword,
+  fetchUserByUsernameFromDb,
+  fetchUserByIdFromDb,
+} = require('../model/userOrm');
+
 // Done is similar
 // takes 2 parameters
 // the 1st is an error or an error object
 // the 2nd is the user you found or null if you dont find one
 const localStrategy = new LocalStrategy(async (username, password, done) => {
-//  Find a user with some given criteria
+  //   Find a user with some given criteria
   //   if an error happened when you tried to find that user
   //   call done like this done(err, null);
   let user;
@@ -19,9 +24,9 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
     return done(e, null);
   }
   //   if you do find a user, check the users credentials
-//   if the users credentials match, call done like this done(null, userWeFound);
-//   What passport will do if we pass a user as the 2nd param to done
-//   on the next request that the middleware applied
+  //   if the users credentials match, call done like this done(null, userWeFound);
+  //   What passport will do if we pass a user as the 2nd param to done
+  //   on the next request that the middleware applied
   if (user) {
     const doesPasswordMatch = await comparePassword(password, user.password);
     if (doesPasswordMatch) {
@@ -34,7 +39,7 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
     console.log('happening');
     return done(null, false);
   }
-//   if no user was found call done like return done(null, false);
+  //   if no user was found call done like return done(null, false);
 });
 
 const jwtOptions = {
@@ -60,7 +65,6 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async (jwtToken, done) => {
     // and attach it to req.user on the next request
     return done(null, user);
   }
-
 });
 
 // All of the tokens will be coming in from the header
