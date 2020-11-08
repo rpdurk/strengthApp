@@ -11,38 +11,105 @@ import {
   Grid,
   TextField,
   makeStyles,
+  OutlinedInput,
+  InputAdornment,
+  MenuItem,
 } from "@material-ui/core";
 
-const states = [
-  {
-    value: "alabama",
-    label: "Alabama",
-  },
-  {
-    value: "new-york",
-    label: "New York",
-  },
-  {
-    value: "california",
-    label: "California",
-  },
-];
-
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
 const ProfileDetails = ({ className, ...rest }) => {
-  const classes = useStyles();
   const [values, setValues] = useState({
     firstName: "Ryan",
     lastName: "Durk",
     email: "demo@sfsu.edu",
-    height: "6ft",
-    weight: "175lbs",
+    city: "San Francisco",
+    state: "CA",
+    feet: 6,
+    inches: 1,
+    weight: 175,
   });
+  const feet = [
+    {
+      value: 3,
+      label: 3,
+    },
+    {
+      value: 4,
+      label: 4,
+    },
+    {
+      value: 5,
+      label: 5,
+    },
+    {
+      value: 6,
+      label: 6,
+    },
+    {
+      value: 7,
+      label: 7,
+    },
+  ];
+  const inches = [
+    {
+      value: 0,
+      label: 0,
+    },
+    {
+      value: 1,
+      label: 1,
+    },
+    {
+      value: 2,
+      label: 2,
+    },
+    {
+      value: 3,
+      label: 3,
+    },
+    {
+      value: 4,
+      label: 4,
+    },
+    {
+      value: 5,
+      label: 5,
+    },
+    {
+      value: 6,
+      label: 6,
+    },
+    {
+      value: 7,
+      label: 7,
+    },
+    {
+      value: 8,
+      label: 8,
+    },
+    {
+      value: 9,
+      label: 9,
+    },
+    {
+      value: 10,
+      label: 10,
+    },
+    {
+      value: 11,
+      label: 11,
+    },
+    {
+      value: 12,
+      label: 12,
+    },
+  ];
 
-  const handleChange = event => {
+  const useStyles = makeStyles(() => ({
+    title: { textAlign: "center" },
+  }));
+  const classes = useStyles();
+
+  const handleChange = (event) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value,
@@ -50,95 +117,140 @@ const ProfileDetails = ({ className, ...rest }) => {
   };
 
   return (
+    // Profile form
     <form
-      autoComplete="off"
+      autoComplete="on"
       noValidate
       className={clsx(classes.root, className)}
       {...rest}
     >
       <Card>
-        <CardHeader title="Profile" />
+        <CardHeader title="Profile" className={classes.title} />
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
+            {/* First Name */}
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 label="First name"
+                id="firstName"
                 name="firstName"
                 onChange={handleChange}
-                required
                 value={values.firstName}
                 variant="outlined"
               />
             </Grid>
+            {/* Last Name */}
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 label="Last name"
+                id="lastName"
                 name="lastName"
                 onChange={handleChange}
-                required
                 value={values.lastName}
                 variant="outlined"
               />
             </Grid>
-            <Grid item md={6} xs={12}>
+            {/* Email */}
+            <Grid item xs={12}>
               <TextField
                 fullWidth
                 label="Email Address"
+                id="email"
                 name="email"
                 onChange={handleChange}
-                required
                 value={values.email}
                 variant="outlined"
               />
             </Grid>
+            {/* City */}
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                label="Phone Number"
-                name="phone"
+                label="City"
+                id="city"
+                name="city"
                 onChange={handleChange}
-                type="number"
-                value={values.phone}
+                value={values.city}
                 variant="outlined"
               />
             </Grid>
+            {/* State */}
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
-                label="Country"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Select State"
+                label="State"
+                id="state"
                 name="state"
                 onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
                 value={values.state}
                 variant="outlined"
+              />
+            </Grid>
+            {/* Height */}
+            <Grid item md={3} xs={6}>
+              <TextField
+                id="feet"
+                select
+                fullWidth
+                type="number"
+                label="Height (ft)"
+                value={values.feet}
+                onChange={handleChange}
+                variant="outlined"
+                endAdornment={
+                  <InputAdornment position="end">Lbs</InputAdornment>
+                }
               >
-                {states.map(option => (
-                  <option key={option.value} value={option.value}>
+                {feet.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
                     {option.label}
-                  </option>
+                  </MenuItem>
                 ))}
               </TextField>
+            </Grid>
+            <Grid item md={3} xs={6}>
+              <TextField
+                id="inches"
+                select
+                fullWidth
+                type="number"
+                label="Height (in)"
+                value={values.inches}
+                onChange={handleChange}
+                variant="outlined"
+                endAdornment={
+                  <InputAdornment position="end">Lbs</InputAdornment>
+                }
+              >
+                {inches.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            {/* Weight */}
+            <Grid item md={6} xs={12}>
+              <TextField
+                id="weight"
+                label="Weight (lbs)"
+                onChange={handleChange}
+                type="number"
+                value={values.weight}
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </Grid>
           </Grid>
         </CardContent>
         <Divider />
-        <Box display="flex" justifyContent="flex-end" p={2}>
+        {/* Submit */}
+        <Box display="flex" justifyContent="center" p={2}>
           <Button color="primary" variant="contained">
             Save details
           </Button>
