@@ -17,6 +17,7 @@ import clsx from 'clsx';
 import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -38,10 +39,11 @@ const useStyles = makeStyles(theme => ({
   fixedHeight: {
     height: 350,
   },
-  bottom:{
+  bottom: {
     marginBottom: theme.spacing(4)
+
   },
-  top:{
+  top: {
     marginTop: theme.spacing(4)
   },
 }));
@@ -83,14 +85,16 @@ export default function BasicTable() {
 
   return (
     <Container maxWidth="xl" className={classes.container}>
-      <TextField 
-       className={classes.bottom}
+      <Box display="flex" justifyContent="center" p={2}>
+        <TextField
+          className={classes.bottom}
           id="createWorkout"
           label="Create your workout"
           defaultValue="Default Value"
           variant="outlined"
+          justifyContent="center"
         />
-  
+      </Box>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -134,9 +138,11 @@ export default function BasicTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button  className={classes.top} color="primary" variant="contained">
-            Create
+      <Box display="flex" justifyContent="center" p={2}>
+        <Button className={classes.top} color="primary" variant="contained" >
+          Create
           </Button>
+      </Box>
     </Container>
   );
 }
