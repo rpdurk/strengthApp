@@ -85,3 +85,12 @@ module.exports = {
   getUserWeightDateByUserID,
   setUserBiometrics,
 };
+
+// For testing & Reference.
+// const biometrics = {
+//   userId: 1,
+//   height: 60,
+//   weight: 150,
+//   weightDate: '2020-11-04',
+// 
+// };
