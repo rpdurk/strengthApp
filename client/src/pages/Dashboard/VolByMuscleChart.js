@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 const data = [
-  { name: "Chest", value: 400 },
+  { name: "Chest", value: 900 },
   { name: "Back", value: 300 },
   { name: "Arms", value: 300 },
   { name: "Legs", value: 200 },

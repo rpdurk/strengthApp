@@ -12,46 +12,32 @@ import {
 
 const data = [
   {
-    name: "Monday",
-    Previous: 4000,
-    Current: 2400,
-    amt: 2400,
+    name: "Jan",
+    Lbs: 150,
   },
   {
-    name: "Tuesday",
-    Previous: 3000,
-    Current: 1398,
-    amt: 2210,
+    name: "Feb",
+    Lbs: 170,
   },
   {
-    name: "Wednesday",
-    Previous: 2000,
-    Current: 9800,
-    amt: 2290,
+    name: "Mar",
+    Lbs: 162,
   },
   {
-    name: "Thursday",
-    Previous: 2780,
-    Current: 3908,
-    amt: 2000,
+    name: "Apr",
+    Lbs: 174,
   },
   {
-    name: "Friday",
-    Previous: 1890,
-    Current: 4800,
-    amt: 2181,
+    name: "May",
+    Lbs: 180,
   },
   {
-    name: "Saturday",
-    Previous: 2390,
-    Current: 3800,
-    amt: 2500,
+    name: "Jun",
+    Lbs: 186,
   },
   {
-    name: "Sunday",
-    Previous: 3490,
-    Current: 4300,
-    amt: 2100,
+    name: "Jul",
+    Lbs: 161,
   },
 ];
 
@@ -79,11 +65,10 @@ export default class Example extends PureComponent {
           <Legend />
           <Line
             type="monotone"
-            dataKey="Current"
+            dataKey="Lbs"
             stroke="#ff5722"
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="Previous" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     );
