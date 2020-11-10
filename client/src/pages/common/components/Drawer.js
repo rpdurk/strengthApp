@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { useHistory, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setViewerToken } from "../../Viewer";
+// import { setViewerToken } from "../../Viewer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -90,13 +90,13 @@ const PersistentDrawerLeft = props => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const { token } = useSelector(state => state.viewer);
+  // const { token } = useSelector(state => state.viewer);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
-    dispatch(setViewerToken(null));
+    // dispatch(setViewerToken(null));
     history.push("/");
   };
 
