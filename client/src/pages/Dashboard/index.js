@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,6 +24,18 @@ import VolByMuscleChart from '../common/components/VolByMuscleChart';
 import TinyChart from '../common/components/TinyChart';
 import ChooseMuscle from '../common/components/ChooseMuscle';
 import FavoriteWorkouts from '../common/components/FavoriteWorkouts';
+=======
+import React from "react";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import VolumeChart from "../common/components/charts/VolumeChart";
+import VolByMuscleChart from "../common/components/charts/VolByMuscleChart";
+import ChooseMuscle from "../common/components/ChooseMuscle";
+import FavoriteWorkouts from "../common/components/FavoriteWorkouts";
+>>>>>>> main
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -40,7 +53,9 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 350,
   },
-  thumbnail: {},
+  // thumbnail: {
+  //   width: 400,
+  // },
 }));
 
 const Dashboard = () => {
@@ -52,19 +67,19 @@ const Dashboard = () => {
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Weekly Weight Lifted</h4>
-            <TinyChart />
+            <h1>1500 lbs</h1>
           </Paper>
         </Grid>
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Lifts This Week</h4>
-            <TinyChart />
+            <h1>7</h1>
           </Paper>
         </Grid>
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Total Exercises</h4>
-            <TinyChart />
+            <h1>14</h1>
           </Paper>
         </Grid>
         {/* Weekly Volume */}
