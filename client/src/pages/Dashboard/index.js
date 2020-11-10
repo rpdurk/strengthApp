@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,18 +23,14 @@ import VolByMuscleChart from '../common/components/VolByMuscleChart';
 import TinyChart from '../common/components/TinyChart';
 import ChooseMuscle from '../common/components/ChooseMuscle';
 import FavoriteWorkouts from '../common/components/FavoriteWorkouts';
-=======
-import React from "react";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import VolumeChart from "../common/components/charts/VolumeChart";
 import VolByMuscleChart from "../common/components/charts/VolByMuscleChart";
 import ChooseMuscle from "../common/components/ChooseMuscle";
 import FavoriteWorkouts from "../common/components/FavoriteWorkouts";
->>>>>>> main
+import VolumeChart from "./VolumeChart";
+import VolByMuscleChart from "./VolByMuscleChart";
+import ChooseMuscle from "./ChooseMuscle";
+import FavoriteWorkouts from "./FavoriteWorkouts";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -64,18 +59,21 @@ const Dashboard = () => {
   return (
     <Container maxWidth='xl' className={classes.container}>
       <Grid container spacing={3}>
+        {/* Weekly Weight */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Weekly Weight Lifted</h4>
             <h1>1500 lbs</h1>
           </Paper>
         </Grid>
+        {/* Weekly Lifts */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Lifts This Week</h4>
             <h1>7</h1>
           </Paper>
         </Grid>
+        {/* Weekly total excersises */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Total Exercises</h4>
@@ -89,14 +87,14 @@ const Dashboard = () => {
             <VolumeChart />
           </Paper>
         </Grid>
-        {/* Volume By Muscle */}
+        {/* Muscles Used */}
         <Grid item xs={12} md={4} lg={3}>
           <Paper className={fixedHeightPaper}>
             <h1>Muscles Used</h1>
             <VolByMuscleChart />
           </Paper>
         </Grid>
-        {/* Recent Orders */}
+        {/* Favorites */}
         <Grid item xs={12} md={6} lg={6}>
           <Paper className={classes.paper}>
             <h1>Favorite Workouts</h1>
