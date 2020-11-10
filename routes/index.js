@@ -5,7 +5,7 @@ const signInMiddleware = require('../middlewares/signInMiddleware');
 // const userSignUp = require();
 
 // /api/users
-// router.use('/api/users');
+router.use('/api/users/');
 
 // -> /api/exercise
 router.use('/api/exercise', signInMiddleware, exerciseRoutes);

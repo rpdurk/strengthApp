@@ -67,11 +67,11 @@ export default function SignInSide() {
   // Sign In
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const loginUser = useFetchUser();
 
   const onSubmit = () => {
     console.log(`Username: ${username} <-> Password: ${password}`);
 
+    console.log(test);
     // Dispatch via Axios
   };
 
