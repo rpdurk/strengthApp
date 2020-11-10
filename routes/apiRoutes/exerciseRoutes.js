@@ -6,11 +6,11 @@ const {
   returnAllExercisesByName,
   addExercise,
   deleteExercise,
-} = require('../../../controllers/exerciseController');
+} = require('../../controllers/exerciseController');
 // GET Routes
 // GET -> /:userId          -> Returns All by User
 // GET -> /:exerciseId              -> Returns Individual
-// GET -> /:workoutId     -> Returns All by Workout
+// GET -> /:workoutId       -> Returns All by Workout
 // GET -> /:exerciseName    -> Returns All by Name
 
 // Get exercises by User ID
