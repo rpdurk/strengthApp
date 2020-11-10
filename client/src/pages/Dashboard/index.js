@@ -9,7 +9,7 @@ import VolByMuscleChart from "./VolByMuscleChart";
 import ChooseMuscle from "./ChooseMuscle";
 import FavoriteWorkouts from "./FavoriteWorkouts";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -29,9 +29,13 @@ const useStyles = makeStyles((theme) => ({
   //   width: 400,
   // },
 }));
-
+const data = {
+  weeklyVolume: 1500,
+  weeklyLifts: 7,
+};
 const Dashboard = () => {
   const classes = useStyles();
+  const { weeklyVolume, weeklyLifts } = data;
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
     <Container maxWidth="xl" className={classes.container}>
@@ -39,21 +43,21 @@ const Dashboard = () => {
         {/* Weekly Weight */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
-            <h4>Weekly Weight Lifted</h4>
-            <h1>1500 lbs</h1>
+            <h4>Weekly Volume</h4>
+            <h1>{weeklyVolume} lbs</h1>
           </Paper>
         </Grid>
         {/* Weekly Lifts */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Lifts This Week</h4>
-            <h1>7</h1>
+            <h1>{weeklyLifts}</h1>
           </Paper>
         </Grid>
         {/* Weekly total excersises */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
-            <h4>Total Exercises</h4>
+            <h4>Weekly Total Exercises</h4>
             <h1>14</h1>
           </Paper>
         </Grid>
