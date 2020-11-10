@@ -12,46 +12,32 @@ import {
 
 const data = [
   {
-    name: "Monday",
-    Previous: 4000,
-    Current: 2400,
-    amt: 2400,
+    date: "11/9",
+    Volume: 2400,
   },
   {
-    name: "Tuesday",
-    Previous: 3000,
-    Current: 1398,
-    amt: 2210,
+    date: "11/10",
+    Volume: 1398,
   },
   {
-    name: "Wednesday",
-    Previous: 2000,
-    Current: 9800,
-    amt: 2290,
+    date: "11/11",
+    Volume: 9800,
   },
   {
-    name: "Thursday",
-    Previous: 2780,
-    Current: 3908,
-    amt: 2000,
+    date: "11/12",
+    Volume: 3908,
   },
   {
-    name: "Friday",
-    Previous: 1890,
-    Current: 4800,
-    amt: 2181,
+    date: "11/13",
+    Volume: 4800,
   },
   {
-    name: "Saturday",
-    Previous: 2390,
-    Current: 3800,
-    amt: 2500,
+    date: "11/14",
+    Volume: 3800,
   },
   {
-    name: "Sunday",
-    Previous: 3490,
-    Current: 4300,
-    amt: 2100,
+    date: "11/15",
+    Volume: 4300,
   },
 ];
 
@@ -73,17 +59,16 @@ export default class Example extends PureComponent {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
           <Legend />
           <Line
             type="monotone"
-            dataKey="Current"
+            dataKey="Volume"
             stroke="#ff5722"
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="Previous" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     );

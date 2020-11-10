@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useCreateUser } from './SignUpHooks';
 
 function Copyright() {
   return (
@@ -49,7 +50,17 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
-  const postSignUp = () => {};
+  // Get Values
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  // console.log(useCreateUser());
+  const handleSaveUser = useCreateUser();
+
+  // TODO: Implent more fields
+  // Submits Username and Password
+  const onSubmit = () => {
+    handleSaveUser({ username, password });
+  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -95,6 +106,9 @@ export default function SignUp() {
                 label='Email Address'
                 name='email'
                 autoComplete='email'
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -107,6 +121,9 @@ export default function SignUp() {
                 type='password'
                 id='password'
                 autoComplete='current-password'
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -122,6 +139,10 @@ export default function SignUp() {
             variant='contained'
             color='primary'
             className={classes.submit}
+            onClick={(e) => {
+              e.preventDefault();
+              onSubmit();
+            }}
           >
             Sign Up
           </Button>
