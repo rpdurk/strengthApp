@@ -1,9 +1,8 @@
-// require('dotenv')
-//   .config();
+require('dotenv').config();
 const express = require('express');
 const routes = require('./routes');
 
-// require('./services/passport');
+require('./services/passport');
 
 const app = express();
 

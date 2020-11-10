@@ -42,6 +42,10 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
   //   if no user was found call done like return done(null, false);
 });
 
+// const jwtOptions = {
+//   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+//   secretOrKey: process.env.JWT_SECRET,
+// };
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: process.env.JWT_SECRET,
