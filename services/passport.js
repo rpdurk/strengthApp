@@ -8,18 +8,22 @@ const {
   fetchUserByUsernameFromDb,
   fetchUserByIdFromDb,
 } = require('../model/userOrm');
-
 // Done is similar
 // takes 2 parameters
 // the 1st is an error or an error object
 // the 2nd is the user you found or null if you dont find one
 const localStrategy = new LocalStrategy(async (username, password, done) => {
-  //   Find a user with some given criteria
+  console.log(`Local Strat ${username} & ${password}`);
+  //  Find a user with some given criteria
   //   if an error happened when you tried to find that user
   //   call done like this done(err, null);
   let user;
   try {
     user = await fetchUserByUsernameFromDb(username);
+    if (user === false) {
+      console.log(`No User`);
+      return done('no user', false);
+    }
   } catch (e) {
     return done(e, null);
   }
@@ -42,16 +46,13 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
   //   if no user was found call done like return done(null, false);
 });
 
-// const jwtOptions = {
-//   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-//   secretOrKey: process.env.JWT_SECRET,
-// };
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: process.env.JWT_SECRET,
 };
 
 const jwtStrategy = new JwtStrategy(jwtOptions, async (jwtToken, done) => {
+  console.log(`jwtStrat`);
   console.log(jwtToken);
   // { sub: idOfTheUser, iat: timeThatThisTokenWasCreated }
   let user;

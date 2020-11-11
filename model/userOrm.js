@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const {
+  findAllUsers,
   findUserByIdQuery,
   findUserByUsername,
   insertUserQuery,
@@ -17,7 +18,21 @@ const comparePassword = async (candidatePassword, userPassword) => {
 const fetchUserByUsernameFromDb = async (username) => {
   try {
     const [rows] = await connection.query(findUserByUsername, username);
+    if (rows.length === 0) {
+      console.log('DNE', rows);
+      return false;
+    }
     return rows[0];
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+// Gets
+const fetchUsers = async () => {
+  try {
+    const [rows] = await connection.query(findAllUsers);
+    return rows;
   } catch (e) {
     throw new Error(e);
   }
@@ -42,11 +57,9 @@ const fetchUserByIdFromDb = async (userId) => {
 
 // Insert
 const insertUserToDb = async (username, password) => {
-  console.log(`Insert to DB ${username} ${password}`);
   // going to generate some random String to add on to our hashed password once we start hashing it
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-
   try {
     const [result] = await connection.query(insertUserQuery, [
       username,
@@ -75,6 +88,7 @@ const deleteUserByIdFromDb = async (userId) => {
 
 module.exports = {
   comparePassword,
+  fetchUsers,
   fetchUserByIdFromDb,
   fetchUserByUsernameFromDb,
   insertUserToDb,
