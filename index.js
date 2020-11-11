@@ -1,3 +1,4 @@
+// Dotenv needs to initialized at the far most start of the application.
 require('dotenv').config();
 const express = require('express');
 const routes = require('./routes');

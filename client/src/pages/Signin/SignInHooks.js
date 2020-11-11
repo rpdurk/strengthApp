@@ -1,30 +1,30 @@
-import { useEffect } from 'react';
-import { getUser } from '../User/UserReducer';
 import { useUtils } from '../common';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { setViewerToken } from '../Viewer';
 
 export const useFetchUser = () => {
   const { dispatch } = useUtils();
   const history = useHistory();
-  const params = useParams();
 
-  console.log(params);
-  const { selectedUser } = useSelector((state) => state.user);
-  const setSignIn = (username, password) => {
-    axios
-      .get(`/api/users/${params.userId}`, {
-        headers: { authorization: localStorage.getItem('token') },
-      })
-      .then((res) => {
-        dispatch(getUser(res.data));
-        history.push();
-      })
-      .catch((e) => console.log(e));
+  const signIn = async (username, password) => {
+    try {
+      const res = await axios.post('/auth/signin', { username, password });
+      console.log('serve', res);
+      localStorage.setItem('token', res.data);
+      dispatch(setViewerToken(res.data));
+      history.push('/dashboard');
+    } catch (e) {
+      // console.log(e.response);
+      // console.log(e.response);
+      // console.log(e.response);
+      // console.log(e.response);
+      console.log(e.response);
+      // Dispatch Error HERE
+      // TODO:
+      // throw new Error(e);
+    }
   };
 
-  return {
-    selectedUser,
-  };
+  return signIn;
 };
