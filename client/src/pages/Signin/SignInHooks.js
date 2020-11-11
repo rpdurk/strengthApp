@@ -15,6 +15,10 @@ export const useFetchUser = () => {
       dispatch(setViewerToken(res.data));
       history.push('/dashboard');
     } catch (e) {
+      // console.log(e.response);
+      // console.log(e.response);
+      // console.log(e.response);
+      // console.log(e.response);
       console.log(e.response);
       // Dispatch Error HERE
       // TODO:
