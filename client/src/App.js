@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Drawer from './pages/common/components/Drawer';
 import SignIn from './pages/Signin';
@@ -10,8 +16,11 @@ import LogWorkout from './pages/LogWorkout';
 import Progress from './pages/Progress';
 import Account from './pages/Account';
 import theme from './utils/Theme';
+import { useSelector } from 'react-redux';
 
 function App() {
+  let viewer = useSelector((state) => state.viewer);
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -22,7 +31,14 @@ function App() {
         >
           <Drawer>
             <Switch>
-              <Route path='/dashboard' component={Dashboard} />
+              <Route exact path='/dashboard'>
+                {viewer.token ? (
+                  // <Redirect to='/dashboard' />
+                  <Dashboard />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
               <Route path='/create' component={CreateWorkout} />
               <Route path='/log' component={LogWorkout} />
               <Route path='/progress' component={Progress} />
