@@ -33,16 +33,39 @@ function App() {
             <Switch>
               <Route exact path='/dashboard'>
                 {viewer.token ? (
-                  // <Redirect to='/dashboard' />
                   <Dashboard />
                 ) : (
                   <Redirect to='/' />
                 )}
               </Route>
-              <Route path='/create' component={CreateWorkout} />
-              <Route path='/log' component={LogWorkout} />
-              <Route path='/progress' component={Progress} />
-              <Route path='/account' component={Account} />
+              <Route exact path='/create'>
+                {viewer.token ? (
+                  <CreateWorkout />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
+              <Route exact path='/log'>
+                {viewer.token ? (
+                  <LogWorkout />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
+              <Route exact path='/progress'>
+                {viewer.token ? (
+                  <Progress />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
+              <Route exact path='/account'>
+                {viewer.token ? (
+                  <Account />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
             </Switch>
           </Drawer>
         </Route>

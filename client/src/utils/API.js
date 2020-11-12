@@ -15,19 +15,6 @@ const searchExercises = async () => {
   }
 };
 
-// this function will search for exercises already in the database
-// const searchExercises = async () => {
-//   try {
-//     // const config = {
-//     // headers: {'Authorization': 'Token '+apiKey}
-//     // }
-//     const searchExerciseList = await axios.get(`https://wger.de/api/v2/exercise/`)
-//       console.log(searchExerciseList.data.results);
-//   } catch (err) {
-//     console.log(err)
-//   }  
-// };
-
 // this function will search for muscles used in a given exercise
 const exerciseMuscleInfo = async () => {
   try {

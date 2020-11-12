@@ -108,7 +108,7 @@ export default function BasicTable() {
               <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="select-label">Excercises</InputLabel>
+                    <InputLabel id="select-label">Exercises</InputLabel>
                     <Select
                       labelId="select-label"
                       id="select"
@@ -119,7 +119,7 @@ export default function BasicTable() {
                       <MenuItem value={20}>Twenty</MenuItem>
                       <MenuItem value={30}>Thirty</MenuItem> */}
                     </Select>
-                    <FormHelperText>Choose Your Excercises</FormHelperText>
+                    <FormHelperText>Choose Your Exercises</FormHelperText>
                   </FormControl>
                 </TableCell>
                 <TableCell align="right">
