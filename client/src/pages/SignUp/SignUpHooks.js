@@ -8,7 +8,7 @@ export const useCreateUser = () => {
   const dispatch = useDispatch();
 
   const handleSaveUser = (formValues) => {
-    // console.log(formValues);
+    console.log(formValues);
     axios.post('/auth/signup', formValues).then((res) => {
       console.log('response 👇');
       console.log(res.data);
