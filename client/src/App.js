@@ -7,7 +7,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
-import Drawer from './pages/common/components/Drawer';
+import Drawer from './pages/Drawer';
 import SignIn from './pages/Signin';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
