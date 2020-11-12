@@ -99,8 +99,8 @@ export default function BasicTable() {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell >Exercises</TableCell>
-              <TableCell align="right">Set</TableCell>
+              <TableCell >Excercise</TableCell>
+              {/* <TableCell align="right">Set</TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -123,14 +123,14 @@ export default function BasicTable() {
                   </FormControl>
                 </TableCell>
                 <TableCell align="right">
-                  <TextField
+                  {/* <TextField
                     id="standard-number"
                     label="Choose your set"
                     type="number"
                     InputLabelProps={{
                       shrink: true,
                     }}
-                  />
+                  /> */}
                 </TableCell>
 
               </TableRow>
