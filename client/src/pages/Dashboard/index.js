@@ -32,10 +32,12 @@ const useStyles = makeStyles(theme => ({
 const data = {
   weeklyVolume: 1500,
   weeklyLifts: 7,
+  weeklyExercises: 14,
+  // favoriteWorkouts: ['Squats', 'Deadlifts']
 };
 const Dashboard = () => {
   const classes = useStyles();
-  const { weeklyVolume, weeklyLifts } = data;
+  const { weeklyVolume, weeklyLifts, weeklyExercises, favoriteWorkouts } = data;
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
     <Container maxWidth="xl" className={classes.container}>
@@ -57,8 +59,8 @@ const Dashboard = () => {
         {/* Weekly total excersises */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
-            <h4>Weekly Total Exercises</h4>
-            <h1>14</h1>
+            <h4>Weekly Exercises</h4>
+            <h1>{weeklyExercises}</h1>
           </Paper>
         </Grid>
         {/* Weekly Volume */}
@@ -79,6 +81,7 @@ const Dashboard = () => {
         <Grid item xs={12} md={6} lg={6}>
           <Paper className={classes.paper}>
             <h1>Favorite Workouts</h1>
+
             <FavoriteWorkouts />
           </Paper>
         </Grid>
