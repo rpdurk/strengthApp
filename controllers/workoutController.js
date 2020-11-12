@@ -81,7 +81,7 @@ const addWorkout = async (req, res) => {
 
     // Add workout to DB if Object is fine.
     if (!empty) {
-      await setExercise(req.body);
+      await setWorkout(req.body);
       res.json({ success: true });
     } else {
       res.json({
