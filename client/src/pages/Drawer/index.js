@@ -24,7 +24,9 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import Logo from "../../images/logo-white.png";
+import Banner from "../common/components/Banner";
+import Logo from "../common/components/Logo";
+// import { Box } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -33,11 +35,14 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
   },
 
-  logo: {
-    maxWidth: 160,
+  banner: {
+    marginRight: theme.spacing(4),
   },
 
   appBar: {
+    color: "black",
+    flexDirection: "row",
+    justifyContent: "space-between",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -52,9 +57,9 @@ const useStyles = makeStyles(theme => ({
     }),
   },
 
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
+  // menuButton: {
+  //   // marginRight: theme.spacing(2),
+  // },
   hide: {
     display: "none",
   },
@@ -167,15 +172,9 @@ const PersistentDrawerLeft = props => {
           >
             <MenuIcon />
           </IconButton>
-          <img
-            src="../../images/logo-white.png"
-            alt="logo"
-            // className={classes.logo}
-          />
-          <Typography variant="h6" noWrap>
-            Strength App
-          </Typography>
         </Toolbar>
+        <Banner className={classes.banner} />
+        <div></div>
       </AppBar>
       <Drawer
         className={classes.drawer}
