@@ -7,7 +7,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
-import Drawer from './pages/common/components/Drawer';
+import Drawer from './pages/Drawer';
 import SignIn from './pages/Signin';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
@@ -33,16 +33,39 @@ function App() {
             <Switch>
               <Route exact path='/dashboard'>
                 {viewer.token ? (
-                  // <Redirect to='/dashboard' />
                   <Dashboard />
                 ) : (
                   <Redirect to='/' />
                 )}
               </Route>
-              <Route path='/create' component={CreateWorkout} />
-              <Route path='/log' component={LogWorkout} />
-              <Route path='/progress' component={Progress} />
-              <Route path='/account' component={Account} />
+              <Route exact path='/create'>
+                {viewer.token ? (
+                  <CreateWorkout />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
+              <Route exact path='/log'>
+                {viewer.token ? (
+                  <LogWorkout />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
+              <Route exact path='/progress'>
+                {viewer.token ? (
+                  <Progress />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
+              <Route exact path='/account'>
+                {viewer.token ? (
+                  <Account />
+                ) : (
+                  <Redirect to='/' />
+                )}
+              </Route>
             </Switch>
           </Drawer>
         </Route>
