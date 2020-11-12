@@ -20,10 +20,6 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
   let user;
   try {
     user = await fetchUserByUsernameFromDb(username);
-    if (user === false) {
-      console.log(`No User`);
-      return done('no user', false);
-    }
   } catch (e) {
     return done(e, null);
   }
