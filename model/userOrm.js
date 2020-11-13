@@ -14,7 +14,7 @@ const comparePassword = async (candidatePassword, userPassword) => {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-const username = "j";
+// const username = "j";
 const confirmId = async username => {
   try {
     const [rows] = await connection.query(findUserByUsername, username);
