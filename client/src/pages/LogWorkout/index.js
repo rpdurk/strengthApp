@@ -59,7 +59,14 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     width: '6ch'
-  }
+  },
+
+  table: {
+    minWidth: 750,
+    margin: "0 auto",
+    alignItems: 'center',
+    border: 0,
+  },
 
 }));
 
@@ -105,51 +112,71 @@ const LogWorkout = () => {
           Bench Press
           </Typography>
 
+
         {/* here are the inputs all the workout sets */}
         <form className={classes.root} noValidate autoComplete="off">
-          {
-            numSets.map((_element, index) => {
-              console.log("jsd");
-              return (
-                <React.Fragment>
-                  <Button
-                    className={classes.iconButton}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const newSet = {
-                        set: "",
-                        reptions: "",
-                        weight: "",
-                      };
-                      setNumSets([...numSets, newSet]);
+          <Table className={classes.table}>
+            <TableBody >
+              <TableRow >
+              <TableCell >
+                <Button
+                  className={classes.iconButton}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const newSet = {
+                      set: "",
+                      reptitions: "",
+                      weight: "",
+                    };
+                    setNumSets([...numSets, newSet]);
 
-                    }}
-                  >
-                    <Icon className="fa fa-plus-circle" style={{ fontSize: 36 }} />
-                  </Button>
+                  }}
+                >
+                  
+                  <Icon className="fa fa-plus-circle" style={{ fontSize: 36 }} />
+                </Button>
+                </TableCell>
+                {
+                  numSets.map((_element, index) => {
+                    return (
 
-                  <TextField
-                    id="outlined-number"
-                    label="Sets"
-                    type="number"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    variant="outlined"
-                  />
-                  <TextField id="outlined-basic" label="Reptions" variant="outlined" />
-                  <TextField id="outlined-basic" label="Weight" variant="outlined" />
+                      <TableRow>
+         
+                        <TableCell>
+                          <TextField
+                            id="outlined-number"
+                            label="Sets"
+                            type="number"
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                            variant="outlined"
+                          />
+                        </TableCell>
 
+                        <TableCell>
+                          <TextField id="outlined-basic" label="Reptitions" variant="outlined" />
+                        </TableCell>
 
-                  <Button className={classes.doneButton} color="primary" size="large" variant="contained" >
-                    Done
-                  </Button>
-                </React.Fragment>
-              )
-            })
-          }
+                        <TableCell>
+                          <TextField id="outlined-basic" label="Weight" variant="outlined" />
+                        </TableCell>
+
+                        <TableCell>
+                          <Button className={classes.doneButton} color="primary" size="large" variant="contained" >
+                            Done
+                    </Button>
+                        </TableCell>
+                      </TableRow>
+                    )
+                  })
+                }
+              </TableRow>
+            </TableBody>
+          </Table>
 
         </form>
+
       </Paper>
     </Container>
   );
