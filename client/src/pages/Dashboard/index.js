@@ -1,26 +1,27 @@
-import React from "react";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import VolumeChart from "./VolumeChart";
-import VolByMuscleChart from "./VolByMuscleChart";
-import ChooseMuscle from "./ChooseMuscle";
-import FavoriteWorkouts from "./FavoriteWorkouts";
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import VolumeChart from './VolumeChart';
+import VolByMuscleChart from './VolByMuscleChart';
+import ChooseMuscle from './ChooseMuscle';
+import FavoriteWorkouts from './FavoriteWorkouts';
+import { useEffect } from 'react';
 // some
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
   paper: {
     padding: theme.spacing(2),
-    display: "flex",
-    margin: "0 auto",
-    overflow: "auto",
-    flexDirection: "column",
-    textAlign: "center",
+    display: 'flex',
+    margin: '0 auto',
+    overflow: 'auto',
+    flexDirection: 'column',
+    textAlign: 'center',
   },
   fixedHeight: {
     height: 350,
@@ -37,8 +38,16 @@ const Dashboard = () => {
   const classes = useStyles();
   const { weeklyVolume, weeklyLifts } = data;
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  useEffect(() => {
+    // Axios Request
+  }, []);
+
+  // -> Weekly Volume Get Total weekly lifted weight
+  // axios.get('', (res) => {});
+
   return (
-    <Container maxWidth="xl" className={classes.container}>
+    <Container maxWidth='xl' className={classes.container}>
       <Grid container spacing={3}>
         {/* Weekly Weight */}
         <Grid item xs={4} md={4} lg={4}>

@@ -6,7 +6,10 @@ const INITIAL_STATE = {
     id: '',
     username: '',
   },
+  curUsername: '',
+  curUserId: null,
   moreState: false,
+  credentialError: false,
 };
 
 const userSlice = createSlice({
@@ -15,15 +18,33 @@ const userSlice = createSlice({
   reducers: {
     getUsers: (state, action) => ({
       ...state,
-      users: action.payload
+      users: action.payload,
     }),
     getUser: (state, action) => ({ ...state, selectedUser: action.payload }),
+    setUsername: (state, action) => {
+      return { ...state, curUsername: action.payload };
+    },
+    setUserId: (state, action) => {
+      return { ...state, curUserId: action.payload };
+    },
+    invalidCredentials: (state, action) => ({
+      ...state,
+      credentialError: true,
+    }),
+    validCredentials: (state, action) => ({
+      ...state,
+      credentialError: false,
+    }),
   },
 });
 
 export const {
   getUsers,
   getUser,
+  setUserId,
+  setUsername,
+  invalidCredentials,
+  validCredentials,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

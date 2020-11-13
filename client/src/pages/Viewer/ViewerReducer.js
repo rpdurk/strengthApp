@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 //  Action types, Action creators, another file for your reducer
 const INITIAL_STATE = {
-  token:!!localStorage.getItem('token') ? localStorage.getItem('token') : null,
+  token: !!localStorage.getItem('token') ? localStorage.getItem('token') : null,
 };
 
 const viewerSlice = createSlice({
@@ -27,10 +27,6 @@ const viewerSlice = createSlice({
   },
 });
 
-
-
-export const {
-  setViewerToken,
-} = viewerSlice.actions;
+export const { setViewerToken } = viewerSlice.actions;
 
 export const viewerReducer = viewerSlice.reducer;
