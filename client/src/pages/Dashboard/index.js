@@ -10,18 +10,18 @@ import VolByMuscleChart from "./VolByMuscleChart";
 import ChooseMuscle from "./ChooseMuscle";
 import FavoriteWorkouts from "./FavoriteWorkouts";
 // some
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
   paper: {
     padding: theme.spacing(2),
-    display: "flex",
-    margin: "0 auto",
-    overflow: "auto",
-    flexDirection: "column",
-    textAlign: "center",
+    display: 'flex',
+    margin: '0 auto',
+    overflow: 'auto',
+    flexDirection: 'column',
+    textAlign: 'center',
   },
   fixedHeight: {
     height: 350,
@@ -51,7 +51,7 @@ const Dashboard = () => {
     });
   }, []);
   return (
-    <Container maxWidth="xl" className={classes.container}>
+    <Container maxWidth='xl' className={classes.container}>
       <Grid container spacing={3}>
         {/* Weekly Weight */}
         <Grid item xs={4} md={4} lg={4}>

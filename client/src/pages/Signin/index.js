@@ -13,6 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFetchUser } from './SignInHooks';
+import { useSelector } from 'react-redux';
+import { useUtils } from '../common';
+import { validCredentials } from '../User/UserReducer';
 
 function Copyright() {
   return (
@@ -63,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const { dispatch } = useUtils();
 
   // Sign In
   const [username, setUsername] = useState('');
@@ -70,10 +74,17 @@ export default function SignInSide() {
 
   let signInFunc = useFetchUser();
 
+  let credentialsError = useSelector((state) => state.user.credentialError);
+
   const onSubmit = () => {
     console.log(`Username: ${username} <-> Password: ${password}`);
 
     signInFunc(username, password);
+
+    setTimeout(() => {
+      // Reset to no credentials error
+      dispatch(validCredentials());
+    }, 5000);
     // Dispatch via Axios
   };
 
@@ -90,18 +101,36 @@ export default function SignInSide() {
             Sign in
           </Typography>
           <form className={classes.form} noValidate>
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
-              autoFocus
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            {credentialsError ? (
+              <TextField
+                error
+                variant='outlined'
+                margin='normal'
+                required
+                fullWidth
+                id={credentialsError ? 'outlined-error-helper-text' : 'email'}
+                label={credentialsError ? 'Error' : 'Email Address'}
+                helperText={credentialsError ? 'Invalid Credentials' : ''}
+                name='email'
+                autoComplete='email'
+                autoFocus
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            ) : (
+              <TextField
+                variant='outlined'
+                margin='normal'
+                required
+                fullWidth
+                id='email'
+                label='Email Address'
+                name='email'
+                autoComplete='email'
+                autoFocus
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            )}
+
             <TextField
               variant='outlined'
               margin='normal'
@@ -114,10 +143,7 @@ export default function SignInSide() {
               autoComplete='current-password'
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value='remember' color='primary' />}
-              label='Remember me'
-            />
+            {credentialsError ? 'true' : 'false'}
             <Link>
               <Button
                 type='button'

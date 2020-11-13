@@ -1,17 +1,14 @@
 import { useUtils } from '../common';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import { setViewerToken } from '../Viewer';
-import { setUsername, invalidCredentials } from '../User/UserReducer';
+import exerciseReducer from './exerciseReducer';
 
-export const useFetchUser = () => {
+export const usefetchExercises = () => {
   const { dispatch } = useUtils();
-  const history = useHistory();
 
-  const signIn = async (username, password) => {
+  const fetchExercises = async () => {
     try {
-      const res = await axios.post('/auth/signin', { username, password });
-      const userId = await axios.post('/');
+      const res = await axios.post('/', { username, password });
+
       console.log('serve', res);
       localStorage.setItem('token', res.data);
       dispatch(setViewerToken(res.data));
@@ -30,5 +27,5 @@ export const useFetchUser = () => {
     }
   };
 
-  return signIn;
+  return fetchExercises;
 };
