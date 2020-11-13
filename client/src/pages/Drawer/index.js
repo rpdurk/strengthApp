@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { useHistory, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setViewerToken } from "../../Viewer";
+import { setViewerToken } from "../Viewer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -24,6 +24,9 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Banner from "../common/components/Banner";
+import Logo from "../common/components/Logo";
+// import { Box } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -31,7 +34,15 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
   },
+
+  banner: {
+    marginRight: theme.spacing(4),
+  },
+
   appBar: {
+    color: "black",
+    flexDirection: "row",
+    justifyContent: "space-between",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -46,9 +57,9 @@ const useStyles = makeStyles(theme => ({
     }),
   },
 
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
+  // menuButton: {
+  //   // marginRight: theme.spacing(2),
+  // },
   hide: {
     display: "none",
   },
@@ -83,6 +94,9 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+  },
+  spacer: {
+    width: "84px",
   },
 }));
 
@@ -161,10 +175,9 @@ const PersistentDrawerLeft = props => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Strength App
-          </Typography>
         </Toolbar>
+        <Banner className={classes.banner} />
+        <div className={classes.spacer}></div>
       </AppBar>
       <Drawer
         className={classes.drawer}

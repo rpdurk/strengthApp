@@ -25,13 +25,18 @@ function generate(element) {
   );
 }
 
+const data = {
+  favoriteWorkouts: ["Squats", "Deadlifts"],
+};
+
 export default function InteractiveList() {
   const classes = useStyles();
+  const { favoriteWorkouts } = data;
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
   return (
     <List className={classes.root}>
-      {["Squat", "Dead lift", "Shoulder Press", "Bench Press"].map(value => {
+      {favoriteWorkouts.map(value => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -19,6 +20,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 350,
   },
-  button: {
+  doneButton: {
     marginTop: theme.spacing(2),
     width: '13ch'
   },
@@ -55,49 +57,126 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginBottom: theme.spacing(6)
   },
+  iconButton: {
+    width: '6ch'
+  },
+
+  table: {
+    minWidth: 750,
+    margin: "0 auto",
+    alignItems: 'center',
+    border: 0,
+  },
 
 }));
 
+
+
 const LogWorkout = () => {
   const classes = useStyles();
+  const [age, setAge] = React.useState("");
+  const [numSets, setNumSets] = useState([
+    {
+      set: "",
+      reptions: "",
+      weight: "",
+    }
+  ]);
+  // console.log(numSets);
+  // setNumSets(3);
+
+  const handleChange = event => {
+    setAge(event.target.value);
+  };
 
   return (
     <Container maxWidth="xl" className={classes.container}>
-
-
       <Paper className={classes.paper}>
+        {/* drop down list showing all the workout has been created */}
         <FormControl className={classes.select} >
           <InputLabel>Choose a workout</InputLabel>
           <Select
-            inputProps={{
-              name: 'Choose a workout',
-              id: 'age-native-simple',
-            }}
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={age}
+            onChange={handleChange}
           >
-            <option value={0}>Bench press</option>
-            <option value={0}>Second </option>
-            <option value={0}>Third</option>
+            <MenuItem value={10}>Bench Press</MenuItem>
+            <MenuItem value={20}>Squat</MenuItem>
+            <MenuItem value={30}>Deadlift</MenuItem>
           </Select>
         </FormControl>
+
+        {/* this should be connect with dropdown list, and showing which is selected */}
         <Typography gutterBottom variant="h5" component="h2">
           Bench Press
           </Typography>
+
+
+        {/* here are the inputs all the workout sets */}
         <form className={classes.root} noValidate autoComplete="off">
-          <TextField
-            id="outlined-number"
-            label="Sets"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-          <TextField id="outlined-basic" label="Reptions" variant="outlined" />
-          <TextField id="outlined-basic" label="weight" variant="outlined" />
-          <Button className={classes.button} color="primary" size="large" variant="contained" >
-            Create
-          </Button>
+          <Table className={classes.table}>
+            <TableBody >
+              <TableRow >
+              <TableCell >
+                <Button
+                  className={classes.iconButton}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const newSet = {
+                      set: "",
+                      reptitions: "",
+                      weight: "",
+                    };
+                    setNumSets([...numSets, newSet]);
+
+                  }}
+                >
+                  
+                  <Icon className="fa fa-plus-circle" style={{ fontSize: 36 }} />
+                </Button>
+                </TableCell>
+                {
+                  numSets.map((_element, index) => {
+                    return (
+
+                      <TableRow>
+         
+                        <TableCell>
+                          <TextField
+                            id="outlined-number"
+                            label="Sets"
+                            type="number"
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                            variant="outlined"
+                          />
+                        </TableCell>
+
+                        <TableCell>
+                          <TextField id="outlined-basic" label="Reptitions" variant="outlined" />
+                        </TableCell>
+
+                        <TableCell>
+                          <TextField id="outlined-basic" label="Weight" variant="outlined" />
+                        </TableCell>
+
+                        <TableCell>
+                          <Button className={classes.doneButton} color="primary" size="large" variant="contained" >
+                            Done
+                    </Button>
+                        </TableCell>
+                      </TableRow>
+                    )
+                  })
+                }
+              </TableRow>
+            </TableBody>
+          </Table>
+
         </form>
+
       </Paper>
     </Container>
   );

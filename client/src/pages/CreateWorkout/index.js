@@ -1,28 +1,29 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import clsx from 'clsx';
-import Input from '@material-ui/core/Input';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import clsx from "clsx";
+import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import { searchExercises } from "../../utils/API";
 
 const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 650,
-
   },
   container: {
     paddingTop: theme.spacing(6),
@@ -40,11 +41,10 @@ const useStyles = makeStyles(theme => ({
     height: 350,
   },
   bottom: {
-    marginBottom: theme.spacing(4)
-
+    marginBottom: theme.spacing(4),
   },
   top: {
-    marginTop: theme.spacing(4)
+    marginTop: theme.spacing(4),
   },
 }));
 
@@ -52,27 +52,38 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-
-
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+  createData("Eclair", 262, 16.0, 24, 6.0),
+  createData("Cupcake", 305, 3.7, 67, 4.3),
+  createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
-
-
 
 export default function BasicTable() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = React.useState("");
   const theme = useTheme();
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setAge(event.target.value);
   };
 
+  useEffect(async () => {
+    // Runs after the first render() lifecycle
+    axios
+      .get("https://wger.de/api/v2/exercise/?language=2&limit=999&ordering=id")
+      .then(res => {
+        const exerciseResultsList = res.data.results.filter(
+          exercise => exercise.muscles.length !== 0
+        );
+        const exerciseList = exerciseResultsList.map(singleExercise => {
+          const exerciseName = singleExercise.name;
+          console.log(exerciseName);
+          return exerciseName;
+        });
+      });
+  }, []);
 
   function getStyles(name, nums, theme) {
     return {
@@ -99,16 +110,16 @@ export default function BasicTable() {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell >Excercise</TableCell>
-              <TableCell align="right">Set</TableCell>
+              <TableCell>Excercise</TableCell>
+              {/* <TableCell align="right">Set</TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows.map(row => (
               <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="select-label">Excercises</InputLabel>
+                    <InputLabel id="select-label">Exercises</InputLabel>
                     <Select
                       labelId="select-label"
                       id="select"
@@ -119,29 +130,28 @@ export default function BasicTable() {
                       <MenuItem value={20}>Twenty</MenuItem>
                       <MenuItem value={30}>Thirty</MenuItem> */}
                     </Select>
-                    <FormHelperText>Choose Your Excercises</FormHelperText>
+                    <FormHelperText>Choose Your Exercises</FormHelperText>
                   </FormControl>
                 </TableCell>
                 <TableCell align="right">
-                  <TextField
+                  {/* <TextField
                     id="standard-number"
                     label="Choose your set"
                     type="number"
                     InputLabelProps={{
                       shrink: true,
                     }}
-                  />
+                  /> */}
                 </TableCell>
-
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
       <Box display="flex" justifyContent="center" p={2}>
-        <Button className={classes.top} color="primary" variant="contained" >
+        <Button className={classes.top} color="primary" variant="contained">
           Create
-          </Button>
+        </Button>
       </Box>
     </Container>
   );
