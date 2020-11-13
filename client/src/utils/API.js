@@ -1,17 +1,20 @@
-const axios = require('axios');
+const axios = require("axios");
 // create a const for the apiKey to avoid it being shared
 const apiKey = process.env.apiKey;
 
 const searchExercises = async () => {
   try {
-  const searchAPIForExercises = await axios.get('https://wger.de/api/v2/exercise/?language=2&limit=999&ordering=id')
-  .then((res) => {
-    console.log(
-      res.data.results.filter((exercise) => exercise.muscles.length !== 0)
-    );
-  });
+    return axios
+      .get("https://wger.de/api/v2/exercise/?language=2&limit=999&ordering=id")
+      .then(res => {
+        const exerciseResultsList = res.data.results.filter(
+          exercise => exercise.muscles.length !== 0
+        );
+        console.log(exerciseResultsList);
+        return exerciseResultsList;
+      });
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 };
 
@@ -21,11 +24,13 @@ const exerciseMuscleInfo = async () => {
     // const config = {
     // headers: {'Authorization': 'Token '+apiKey}
     // }
-    const searchExerciseMusclesUsed = await axios.get(`https://wger.de/api/v2/exerciseinfo/`)
-      console.log(searchExerciseMusclesUsed.data.results);
+    const searchExerciseMusclesUsed = await axios.get(
+      `https://wger.de/api/v2/exerciseinfo/`
+    );
+    console.log(searchExerciseMusclesUsed.data.results);
   } catch (err) {
-    console.log(err)
-  }  
+    console.log(err);
+  }
 };
 
 // exerciseMuscleInfo();
@@ -36,28 +41,32 @@ const exerciseImage = async () => {
     // const config = {
     // headers: {'Authorization': 'Token '+apiKey}
     // }
-    const searchExerciseImages = await axios.get(`https://wger.de/api/v2/exerciseimage/`)
-      console.log(searchExerciseImages.data.results);
+    const searchExerciseImages = await axios.get(
+      `https://wger.de/api/v2/exerciseimage/`
+    );
+    console.log(searchExerciseImages.data.results);
   } catch (err) {
-    console.log(err)
-  }  
+    console.log(err);
+  }
 };
 
 // this function will search for exercises specifically by an ID associated with API
-const exerciseInfoByAPIId = async (ExerciseId) => {
+const exerciseInfoByAPIId = async ExerciseId => {
   try {
     // const config = {
     // headers: {'Authorization': 'Token '+apiKey}
     // }
-    const searchExerciseByAPIId = await axios.get(`https://wger.de/api/v2/exerciseinfo/${ExerciseId}`)
-      console.log(searchExerciseByAPIId.data);
+    const searchExerciseByAPIId = await axios.get(
+      `https://wger.de/api/v2/exerciseinfo/${ExerciseId}`
+    );
+    console.log(searchExerciseByAPIId.data);
   } catch (err) {
-    console.log(err)
-  }  
+    console.log(err);
+  }
 };
 
 // need to deconstruct the variable for the API call
-module.exports = { 
+module.exports = {
   searchExercises,
   exerciseMuscleInfo,
   exerciseImage,

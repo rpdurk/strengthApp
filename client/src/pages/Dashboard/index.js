@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -29,16 +30,26 @@ const useStyles = makeStyles(theme => ({
   //   width: 400,
   // },
 }));
-const data = {
-  weeklyVolume: 1500,
-  weeklyLifts: 7,
-  weeklyExercises: 14,
-  // favoriteWorkouts: ['Squats', 'Deadlifts']
-};
+
 const Dashboard = () => {
+  const [data, setData] = useState({
+    weeklyVolume: 0,
+    weeklyLifts: 0,
+    weeklyExercises: 0,
+    // favoriteWorkouts: ['Squats', 'Deadlifts']
+  });
   const classes = useStyles();
   const { weeklyVolume, weeklyLifts, weeklyExercises, favoriteWorkouts } = data;
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  useEffect(() => {
+    axios.get("/api/exercise/").then(res => {
+      const weeklyVolumeLbs = setData({
+        ...data,
+        weeklyVolume: weeklyVolumeLbs.val,
+      });
+    });
+  }, []);
   return (
     <Container maxWidth="xl" className={classes.container}>
       <Grid container spacing={3}>
