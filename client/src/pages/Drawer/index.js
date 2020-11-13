@@ -95,6 +95,9 @@ const useStyles = makeStyles(theme => ({
     }),
     marginLeft: 0,
   },
+  spacer: {
+    width: "84px",
+  },
 }));
 
 const PersistentDrawerLeft = props => {
@@ -174,7 +177,7 @@ const PersistentDrawerLeft = props => {
           </IconButton>
         </Toolbar>
         <Banner className={classes.banner} />
-        <div></div>
+        <div className={classes.spacer}></div>
       </AppBar>
       <Drawer
         className={classes.drawer}
