@@ -1,8 +1,9 @@
-import { useUtils } from '../common';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import { setViewerToken } from '../Viewer';
-import { setCurrentUser, invalidCredentials } from '../User/UserReducer';
+
+import { useUtils } from "../common";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { setViewerToken } from "../Viewer";
+import { setUsername, invalidCredentials } from "../User/UserReducer";
 
 export const useFetchUser = () => {
   const { dispatch } = useUtils();
@@ -20,6 +21,7 @@ export const useFetchUser = () => {
       dispatch(setCurrentUser(user.data)); // Sets Username and Id  -> State
 
       history.push('/dashboard');
+
     } catch (e) {
       console.log(e);
       // console.log(e.response.status === 401)
