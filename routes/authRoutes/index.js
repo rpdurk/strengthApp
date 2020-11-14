@@ -3,14 +3,14 @@ const router = require('express').Router();
 const {
   signInApi,
   signUpApi,
-  getUserId,
+  getUserDetails,
 } = require('../../controllers/authController');
 
 // /auth prepended to everything
 const signInMiddleware = require('../../middlewares/signInMiddleware');
 
-// Get user id with name
-router.get('/userid/:username', getUserId);
+// /auth/userid/:username
+router.get('/userid/:username', getUserDetails);
 
 // /auth/signin
 router.post('/signin', signInMiddleware, signInApi);

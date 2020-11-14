@@ -20,12 +20,15 @@ module.exports = {
 
     res.json(tokenForUser(req.user.id));
   },
-  getUserId: (req, res) => {
-    console.log(`Params 👇`);
-    console.log(req.params.username);
-    const user = fetchUserByUsernameFromDb(req.params.username);
-    res.json(user);
+
+  getUserDetails: async (req, res) => {
+    console.log(`Params :username ${req.params.username}`);
+    const { id, username } = await fetchUserByUsernameFromDb(
+      req.params.username
+    );
+    res.json({ id, username });
   },
+
   signUpApi: async (req, res) => {
     const { username, password } = req.body;
     try {

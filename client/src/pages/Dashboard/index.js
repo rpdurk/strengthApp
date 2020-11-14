@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
-import clsx from "clsx";
-import axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import VolumeChart from "./VolumeChart";
-import VolByMuscleChart from "./VolByMuscleChart";
-import ChooseMuscle from "./ChooseMuscle";
-import FavoriteWorkouts from "./FavoriteWorkouts";
+import React, { useState, useEffect } from 'react';
+import clsx from 'clsx';
+import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import VolumeChart from './VolumeChart';
+import VolByMuscleChart from './VolByMuscleChart';
+import ChooseMuscle from './ChooseMuscle';
+import FavoriteWorkouts from './FavoriteWorkouts';
+import { useSelector } from 'react-redux';
+import { setUserId } from '../User/UserReducer';
+import { useUtils } from '../common';
+
 // some
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,6 +36,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
+  const { dispatch, history } = useUtils();
+
+  //TODO: Check Token validity.
+
+  // Get or Set userId
+  let userId = useSelector((state) => state.user.curUserId);
+  console.log(userId);
+  if (userId === null) {
+    userId = localStorage.getItem('userId');
+    console.log(`local ${userId}`);
+    if (!userId) {
+      history.push('/');
+    } else {
+      dispatch(setUserId(userId));
+    }
+  }
+
   const [data, setData] = useState({
     weeklyVolume: 0,
     weeklyLifts: 0,
@@ -42,14 +63,59 @@ const Dashboard = () => {
   const { weeklyVolume, weeklyLifts, weeklyExercises, favoriteWorkouts } = data;
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  // useEffect(() => {
+  //   axios.get('/api/exercise/').then((res) => {
+  //     const weeklyVolumeLbs = setData({
+  //       ...data,
+  //       weeklyVolume: weeklyVolumeLbs.val,
+  //     });
+  //   });
+  // }, []);
+
+  const getData = async () => {
+    // Axios Request to get exercises
+    try {
+      // Deconstructing
+      let {
+        data: { isEmpty },
+      } = await axios.get(`/api/exercise/check/${userId}`); //
+
+      // isEmpty = true ? 'No data to fetch ' : 'There's data'
+      if (!isEmpty) {
+        let res = await axios.get('/api/exercise/user/1');
+
+        if (res) {
+          console.log(res);
+        }
+      } else {
+        console.log(`isEmpty ${isEmpty}`);
+      }
+    } catch (err) {
+      if (typeof err.response !== 'undefined') {
+        switch (err.response.status) {
+          case 400: {
+            console.log(`Bad Request`);
+            break;
+          }
+          case 401: {
+            console.log(`Bad Request`);
+            break;
+          }
+          default:
+            console.log(`another one`);
+            console.log(err);
+            break;
+        }
+      }
+    }
+  };
+
   useEffect(() => {
-    axios.get("/api/exercise/").then(res => {
-      const weeklyVolumeLbs = setData({
-        ...data,
-        weeklyVolume: weeklyVolumeLbs.val,
-      });
-    });
+    console.log(`DASHBOARD USEFFECT`);
+
+    getData();
   }, []);
+
   return (
     <Container maxWidth='xl' className={classes.container}>
       <Grid container spacing={3}>
