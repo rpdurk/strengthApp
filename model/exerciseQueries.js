@@ -19,13 +19,13 @@
  *
  */
 
-const findAllExercisesByUserId = "SELECT * FROM exercises WHERE userId = ?;";
-const findExerciseByWorkoutId = "SELECT * FROM exercises WHERE workoutId = ?;";
-const findExerciseById = "SELECT * FROM exercises WHERE id = ?;";
-const findExerciseByName = "SELECT * FROM exercises WHERE exerciseName = ?;";
+const findAllExercisesByUserId = 'SELECT * FROM exercises WHERE userId = ?;';
+const findExerciseByWorkoutId = 'SELECT * FROM exercises WHERE workoutId = ?;';
+const findExerciseById = 'SELECT * FROM exercises WHERE id = ?;';
+const findExerciseByName = 'SELECT * FROM exercises WHERE exerciseName = ?;';
 const insertExerciseQuery =
-  "INSERT INTO exercises (exerciseName, musclesUsed, userId, workoutName, exerciseDate, setTotal, reptitionGoalPerSet, reptitionsCompletedPerSet, weightUsedPerSet, timeUsedPerSet, restUsedPerSet) VALUES (? ,? ,?, ? ,? ,?, ? ,? ,?, ?, ?)";
-const deleteExerciseById = "DELETE FROM exercises WHERE id = ?;";
+  'INSERT INTO exercises (exerciseName, musclesUsed, userId, workoutId, exerciseDate, setTotal, reptitionGoalPerSet, reptitionsCompletedPerSet, weightUsedPerSet, timeUsedPerSet, restUsedPerSet) VALUES (? ,? ,?, ? ,? ,?, ? ,? ,?, ?, ?)';
+const deleteExerciseById = 'DELETE FROM exercises WHERE id = ?;';
 
 module.exports = {
   findAllExercisesByUserId,

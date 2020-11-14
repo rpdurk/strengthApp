@@ -10,12 +10,11 @@ const exerciseSlice = createSlice({
   initialState: INITIAL_STATE,
 
   reducers: {
-    getExercises: (state, action) => {
+    setExercises: (state, action) => {
       return { ...state, exercises: action.payload };
     },
   },
 });
 
-export const { getExercises } = viewerSlice.actions;
-
+export const { setExercises } = exerciseSlice.actions;
 export const exerciseReducer = exerciseSlice.reducer;
