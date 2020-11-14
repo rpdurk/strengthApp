@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -62,6 +62,16 @@ export default function BasicTable() {
       value: "",
     },
   ]);
+
+  let counter = 0;
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    let exercises = {};
+    for (let i = 0; i < counter; i++) {
+      console.log(document.getElementById(`tf${i}`));
+    }
+  };
 
   const classes = useStyles();
 
@@ -129,18 +139,21 @@ export default function BasicTable() {
                   </Button>
                 </TableCell>
                 {exercise.map((_element, index) => {
+                  counter = index;
+
                   return (
                     <TableRow>
                       <TableCell component="th" scope="row">
                         <FormControl className={classes.formControl}>
                           <Autocomplete
-                            id="exercise"
+                            id={index}
                             options={exerciseList}
                             getOptionLabel={option => option}
                             style={{ width: 400 }}
                             renderInput={params => (
                               <TextField
                                 {...params}
+                                id={`tf${index}`}
                                 label="Choose your exercise"
                                 variant="outlined"
                               />
@@ -157,7 +170,12 @@ export default function BasicTable() {
         </Table>
       </TableContainer>
       <Box display="flex" justifyContent="center" p={2}>
-        <Button className={classes.top} color="primary" variant="contained">
+        <Button
+          onClick={handleSubmit}
+          className={classes.top}
+          color="primary"
+          variant="contained"
+        >
           Create
         </Button>
       </Box>
