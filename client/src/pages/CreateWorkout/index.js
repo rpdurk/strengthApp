@@ -20,10 +20,15 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import { searchExercises } from "../../utils/API";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import Icon from "@material-ui/core/Icon";
 
 const useStyles = makeStyles(theme => ({
   table: {
-    minWidth: 650,
+    minWidth: 750,
+    margin: "0 auto",
+    alignItems: "center",
+    border: 0,
   },
   container: {
     paddingTop: theme.spacing(6),
@@ -48,26 +53,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
 export default function BasicTable() {
-  const classes = useStyles();
-  const [age, setAge] = React.useState("");
-  const theme = useTheme();
+  const [formInputs, setFormInputs] = useState({});
+  const [exerciseList, setExerciseList] = useState([]);
+  const [filteredExercises, setFilteredExercises] = useState([]);
+  const [exercise, setExercise] = useState([
+    {
+      value: "",
+    },
+  ]);
 
-  const handleChange = event => {
-    setAge(event.target.value);
-  };
+  const classes = useStyles();
 
   useEffect(async () => {
     // Runs after the first render() lifecycle
@@ -79,9 +75,11 @@ export default function BasicTable() {
         );
         const exerciseList = exerciseResultsList.map(singleExercise => {
           const exerciseName = singleExercise.name;
-          console.log(exerciseName);
+          //   console.log(exerciseName);
           return exerciseName;
+          // return exerciseName.toLowerCase();
         });
+        setExerciseList(exerciseList);
       });
   }, []);
 
@@ -99,9 +97,8 @@ export default function BasicTable() {
       <Box display="flex" justifyContent="center" p={2}>
         <TextField
           className={classes.bottom}
-          id="createWorkout"
-          label="Create your workout"
-          defaultValue="Default Value"
+          id="workoutName"
+          label="Workout Name"
           variant="outlined"
           justifyContent="center"
         />
@@ -109,42 +106,53 @@ export default function BasicTable() {
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
-            <TableRow>
-              <TableCell>Excercise</TableCell>
-              {/* <TableCell align="right">Set</TableCell> */}
-            </TableRow>
+            <TableRow>{/* <TableCell>Exercises</TableCell> */}</TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id="select-label">Exercises</InputLabel>
-                    <Select
-                      labelId="select-label"
-                      id="select"
-                      value={age}
-                      onChange={handleChange}
-                    >
-                      {/* <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem> */}
-                    </Select>
-                    <FormHelperText>Choose Your Exercises</FormHelperText>
-                  </FormControl>
-                </TableCell>
-                <TableCell align="right">
-                  {/* <TextField
-                    id="standard-number"
-                    label="Choose your set"
-                    type="number"
-                    InputLabelProps={{
-                      shrink: true,
+            <Box display="flex" justifyContent="center" p={2}>
+              <TableRow>
+                <TableCell>
+                  <Button
+                    className={classes.iconButton}
+                    onClick={e => {
+                      e.preventDefault();
+                      const newExercise = {
+                        value: "",
+                      };
+                      setExercise([...exercise, newExercise]);
                     }}
-                  /> */}
+                  >
+                    <Icon
+                      className="fa fa-plus-circle"
+                      style={{ fontSize: 36 }}
+                    />
+                  </Button>
                 </TableCell>
+                {exercise.map((_element, index) => {
+                  return (
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        <FormControl className={classes.formControl}>
+                          <Autocomplete
+                            id="exercise"
+                            options={exerciseList}
+                            getOptionLabel={option => option}
+                            style={{ width: 400 }}
+                            renderInput={params => (
+                              <TextField
+                                {...params}
+                                label="Choose your exercise"
+                                variant="outlined"
+                              />
+                            )}
+                          />
+                        </FormControl>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableRow>
-            ))}
+            </Box>
           </TableBody>
         </Table>
       </TableContainer>

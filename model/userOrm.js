@@ -28,7 +28,7 @@ const confirmId = async username => {
   }
 };
 
-confirmId(username);
+// confirmId(username);
 
 // All ORM functions will be called inside of the Controllers
 const fetchUserByUsernameFromDb = async username => {
