@@ -33,6 +33,6 @@ router.get('/exerciseName/:exerciseName', returnAllExercisesByName);
 router.post('/add', addExercise);
 
 // Delete an Exercise
-router.delete('/:exerciseId', deleteExercise);
+router.delete('/delete/:exerciseId', deleteExercise);
 
 module.exports = router;

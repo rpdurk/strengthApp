@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { 
+const {
   returnAllWorkoutsByUserId,
   returnWorkoutsById,
   returnWorkoutsByWorkoutName,
@@ -14,18 +14,18 @@ const {
 // GET -> /:weightDate    -> Returns Dates of weight by UserId
 
 // Get workouts by User ID
-router.get('/:userId', returnAllWorkoutsByUserId);
+router.get('/user/:userId', returnAllWorkoutsByUserId);
 
 // Get workout by workout ID
-router.get('/:workoutId', returnWorkoutsById);
+router.get('/id/:workoutId', returnWorkoutsById);
 
 // Get workout by workoutName
-router.get('/:workoutName', returnWorkoutsByWorkoutName);
+router.get('/name/:workoutName', returnWorkoutsByWorkoutName);
 
 // Add a workout
-router.get('/addWorkout', addWorkout);
+router.post('/addWorkout', addWorkout);
 
 // Delete a workout
-router.get('/:workoutId', deleteWorkouts);
+router.post('/delete/:workoutId', deleteWorkouts);
 
 module.exports = router;

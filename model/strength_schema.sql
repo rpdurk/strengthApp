@@ -15,7 +15,6 @@ CREATE TABLE workouts (
 	id INT AUTO_INCREMENT NOT NULL,
     workoutName VARCHAR(255) NOT NULL,
     userId INT references users(id),
-    workoutDate DATE NOT NULL,
     exercises VARCHAR(255),
     PRIMARY KEY (id)
 );
