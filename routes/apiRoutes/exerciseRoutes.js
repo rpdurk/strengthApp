@@ -8,12 +8,12 @@ const {
   deleteExercise,
   checkExercises,
 } = require('../../controllers/exerciseController');
+// /api/exercise ->
 // GET Routes
 // GET -> /:userId          -> Returns All by User
-// GET -> /:exerciseId              -> Returns Individual
+// GET -> /:exerciseId      -> Returns Individual exercise
 // GET -> /:workoutId       -> Returns All by Workout
 // GET -> /:exerciseName    -> Returns All by Name
-
 // Checks if exercises exist for user.
 router.get('/check/:userId', checkExercises);
 
@@ -33,6 +33,6 @@ router.get('/exerciseName/:exerciseName', returnAllExercisesByName);
 router.post('/add', addExercise);
 
 // Delete an Exercise
-router.delete('/:exerciseId', deleteExercise);
+router.delete('/delete/:exerciseId', deleteExercise);
 
 module.exports = router;

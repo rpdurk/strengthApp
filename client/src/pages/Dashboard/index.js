@@ -12,8 +12,8 @@ import FavoriteWorkouts from './FavoriteWorkouts';
 import { useSelector } from 'react-redux';
 import { setUserId } from '../User/UserReducer';
 import { useUtils } from '../common';
+import { CircularProgress, LinearProgress } from '@material-ui/core';
 
-// some
 const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
@@ -36,16 +36,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
+  const classes = useStyles(); // -> Material UI Styles
+  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight); // -> Material UI
   const { dispatch, history } = useUtils();
 
   //TODO: Check Token validity.
-
   // Get or Set userId
   let userId = useSelector((state) => state.user.curUserId);
-  console.log(userId);
+
   if (userId === null) {
     userId = localStorage.getItem('userId');
-    console.log(`local ${userId}`);
     if (!userId) {
       history.push('/');
     } else {
@@ -53,24 +53,17 @@ const Dashboard = () => {
     }
   }
 
-  const [data, setData] = useState({
-    weeklyVolume: 0,
-    weeklyLifts: 0,
-    weeklyExercises: 0,
-    // favoriteWorkouts: ['Squats', 'Deadlifts']
-  });
-  const classes = useStyles();
-  const { weeklyVolume, weeklyLifts, weeklyExercises, favoriteWorkouts } = data;
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  // Component State
+  const [weeklyVolume, setWeeklyVolume] = useState(null);
+  const [weeklyLifts, setWeeklyLifts] = useState(null);
+  const [weeklyExercises, setWeeklyExercises] = useState(null);
+  const [favoriteWorkouts, setFavoriteWorkouts] = useState(null);
 
-  // useEffect(() => {
-  //   axios.get('/api/exercise/').then((res) => {
-  //     const weeklyVolumeLbs = setData({
-  //       ...data,
-  //       weeklyVolume: weeklyVolumeLbs.val,
-  //     });
-  //   });
-  // }, []);
+  // Functions for Calculating Data
+
+  setTimeout(() => {
+    setWeeklyVolume('waa');
+  }, 5000);
 
   const getData = async () => {
     // Axios Request to get exercises
@@ -110,9 +103,9 @@ const Dashboard = () => {
     }
   };
 
+  // Calculate Data
   useEffect(() => {
     console.log(`DASHBOARD USEFFECT`);
-
     getData();
   }, []);
 
@@ -123,21 +116,37 @@ const Dashboard = () => {
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Weekly Volume</h4>
-            <h1>{weeklyVolume} lbs</h1>
+            {/* <h1>{weeklyVolume} lbs</h1> */}
+
+            {weeklyVolume === null ? (
+              <LinearProgress />
+            ) : (
+              <h1>{weeklyVolume} lbs</h1>
+            )}
           </Paper>
         </Grid>
         {/* Weekly Lifts */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Lifts This Week</h4>
-            <h1>{weeklyLifts}</h1>
+            {/* <h1>{weeklyLifts}</h1> */}
+            {weeklyVolume === null ? (
+              <LinearProgress />
+            ) : (
+              <h1>{weeklyLifts} lbs</h1>
+            )}
           </Paper>
         </Grid>
         {/* Weekly total excersises */}
         <Grid item xs={4} md={4} lg={4}>
           <Paper className={classes.paper}>
             <h4>Weekly Exercises</h4>
-            <h1>{weeklyExercises}</h1>
+            {/* <h1>{weeklyExercises}</h1> */}
+            {weeklyVolume === null ? (
+              <LinearProgress />
+            ) : (
+              <h1>{weeklyExercises} lbs</h1>
+            )}
           </Paper>
         </Grid>
         {/* Weekly Volume */}

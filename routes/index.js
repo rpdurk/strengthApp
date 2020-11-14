@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const exerciseRoutes = require('./apiRoutes/exerciseRoutes');
+const workoutRoutes = require('./apiRoutes/workoutRoutes');
 const authRoutes = require('./authRoutes');
 const signInMiddleware = require('../middlewares/signInMiddleware');
 // const userSignUp = require();
@@ -13,7 +14,7 @@ const signInMiddleware = require('../middlewares/signInMiddleware');
 router.use('/api/exercise', exerciseRoutes);
 
 // -> /api/workout
-// router.use('/api/workout', workoutRoutes);
+router.use('/api/workout', workoutRoutes);
 router.use('/auth', authRoutes);
 
 module.exports = router;

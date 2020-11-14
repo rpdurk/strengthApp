@@ -78,47 +78,47 @@ const getAllExercisesByMuscle = async (muscleUsed) => {
 /**
  * Takes in an exercise Object which must contain all of the following. If you have empty values add 'et' for empty
  * @param {Object} exercise - Takes in an exercise Object. See the following for structure and details.
- * @param {String} exercise.name - Name of exercise
+ * @param {String} exercise.exerciseName - Name of exercise
  * @param {String} exercise.muscleUsed - Can be empty - Muscle used with this exercise
  * @param {Number} exercise.userId -  A User ID to be associated with this exercise.
  * @param {Number} exercise.workoutId - A Workout ID to be associated with this exercise.
- * @param {Date}   exercise.date - Date as in SQL -> Format 'YYYY-MM-DD';
+ * @param {Date}   exercise.exerciseDate - Date as in SQL -> Format 'YYYY-MM-DD';
  * @param {Number} exercise.setTotal  - Total amount of sets
- * @param {String} exercise.repsGoalPerSet - This would be a Stringified Object. Formatted as {'set0': 15, 'set1' : 30}
- * @param {String} exercise.repsCompletedPerSet - This would be a Stringified Object. Formatted as {'set0': 8, 'set1' : 12}
+ * @param {String} exercise.reptitionGoalPerSet - This would be a Stringified Object. Formatted as {'set0': 15, 'set1' : 30}
+ * @param {String} exercise.reptitionsCompletedPerSet - This would be a Stringified Object. Formatted as {'set0': 8, 'set1' : 12}
  * @param {String} exercise.weightUsedPerSet - Can be empty - This would be a Stringified Object. Formatted as {'set0': 15, 'set1' : 30} -> Weight always in LBs (Pounds).
- * @param {String} exercise.timeUsedPerSet - Can be empty -This would be a Stringified Object. Formatted as {'set0': 300} -> Time always in seconds
- * @param {String} exercise.restTimeUsedPerSet - Can be empty - This would be a Stringified Object. Formatted as {'set0': 300} -> Time always in seconds
+ * @param {String} exercise.timeUsedPerSet  - Can be empty -This would be a Stringified Object. Formatted as {'set0': 300} -> Time always in seconds
+ * @param {String} exercise.restUsedPerSet  - Can be empty - This would be a Stringified Object. Formatted as {'set0': 300} -> Time always in seconds
  */
 const setExercise = async (exercise) => {
   // Destructure object
   const {
-    name,
+    exerciseName,
     muscleUsed,
     userId,
     workoutId,
-    date,
+    exerciseDate,
     setTotal,
-    repsGoalPerSet,
-    repsCompletedPerSet,
+    reptitionGoalPerSet,
+    reptitionsCompletedPerSet,
     weightUsedPerSet,
     timeUsedPerSet,
-    restTimeUsedPerSet,
+    restUsedPerSet,
   } = exercise;
 
   try {
     const [results] = await connection.query(insertExerciseQuery, [
-      name,
+      exerciseName,
       muscleUsed,
       userId,
       workoutId,
-      date,
+      exerciseDate,
       setTotal,
-      repsGoalPerSet,
-      repsCompletedPerSet,
+      reptitionGoalPerSet,
+      reptitionsCompletedPerSet,
       weightUsedPerSet,
       timeUsedPerSet,
-      restTimeUsedPerSet,
+      restUsedPerSet,
     ]);
   } catch (err) {
     throw new Error(err);

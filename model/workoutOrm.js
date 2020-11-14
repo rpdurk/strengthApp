@@ -12,46 +12,44 @@ const connection = require('../config/connection');
  *
  * @param {Number} userId - Gets Workouts by user ID from SQL DB.
  */
- const getAllWorkoutsByUserId = async (userId) => {
-   try {
+const getAllWorkoutsByUserId = async (userId) => {
+  console.log(userId);
+  try {
     const [firstRow] = await connection.query(findAllWorkoutsByUserId, userId);
     return firstRow;
-   } catch (err) {
-     if (err) console.error(err);
-     throw new Error(err);
-   }
- };
-
- /**
- *
- * @param {Number} workoutId - Gets Workouts by user ID from SQL DB.
- */
-
-const getWorkoutsIdQuery = async (workoutId) => {
-  try {
-   const [results] = await connection.query(
-     findWorkoutByIdQuery, 
-      workoutId
-    );
-   return results;
   } catch (err) {
     if (err) console.error(err);
     throw new Error(err);
   }
 };
 
- /**
+/**
+ *
+ * @param {Number} workoutId - Gets Workouts by user ID from SQL DB.
+ */
+
+const getWorkoutsIdQuery = async (workoutId) => {
+  try {
+    const [results] = await connection.query(findWorkoutByIdQuery, workoutId);
+    return results;
+  } catch (err) {
+    if (err) console.error(err);
+    throw new Error(err);
+  }
+};
+
+/**
  *
  * @param {String} workoutName - Gets workout by name from SQL DB.
  */
 
 const getWorkoutByWorkoutName = async (workoutName) => {
   try {
-   const [results] = await connection.query(
-     findWorkoutByWorkoutName, 
+    const [results] = await connection.query(
+      findWorkoutByWorkoutName,
       workoutName
     );
-   return results;
+    return results;
   } catch (err) {
     if (err) console.error(err);
     throw new Error(err);
@@ -63,27 +61,19 @@ const getWorkoutByWorkoutName = async (workoutName) => {
  * @param {String} workouts.workoutName - Name of workout
  * @param {Number} workouts.userId -  A User ID to be associated with this exercise.
  * @param {Date} workouts.date - Date as in SQL -> Format 'YYYY-MM-DD';
- * @param {String} workouts.exercises - Cannot be empty - This would be a Stringified Object. Formatted as {'exercise0': 'Squat', 'exercise1' : 'bench press'} -> 
+ * @param {String} workouts.exercises - Cannot be empty - This would be a Stringified Object. Formatted as {'exercise0': 'Squat', 'exercise1' : 'bench press'} ->
  */
 
-const setWorkout = async (workout) => {
-  // Destructure object
-  const {
-    workoutName,
-    userId,
-    workoutDate,
-    workoutExercises,
-  } = exercise;
-
+const setWorkout = async ({ workoutName, userId, exercises }) => {
+  // console.log('setWorkout', workoutName, userId, exercises);
   try {
     const [results] = await connection.query(insertWorkout, [
       workoutName,
       userId,
-      workoutDate,
-      workoutExercises,
+      exercises,
     ]);
-    console.log(results);
-    // return results;
+    // console.log('results', results);
+    return results;
   } catch (err) {
     throw new Error(err);
   }
