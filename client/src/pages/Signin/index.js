@@ -77,14 +77,13 @@ export default function SignInSide() {
   let credentialsError = useSelector((state) => state.user.credentialError);
 
   const onSubmit = () => {
-    console.log(`Username: ${username} <-> Password: ${password}`);
-
     signInFunc(username, password);
 
-    setTimeout(() => {
-      // Reset to no credentials error
-      dispatch(validCredentials());
-    }, 5000);
+    // TODO: Add a UI Warning/Alert
+    // setTimeout(() => {
+    //   // Reset to no credentials error
+    //   dispatch(validCredentials());
+    // }, 1500);
     // Dispatch via Axios
   };
 
@@ -143,7 +142,7 @@ export default function SignInSide() {
               autoComplete='current-password'
               onChange={(e) => setPassword(e.target.value)}
             />
-            {credentialsError ? 'true' : 'false'}
+            {credentialsError ? 'Invalid Credentials' : ''}
             <Link>
               <Button
                 type='button'

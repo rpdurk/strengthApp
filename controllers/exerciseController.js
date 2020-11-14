@@ -7,12 +7,27 @@ const {
   removeExerciseById,
 } = require('../model/exerciseOrm');
 
+const checkExercises = async (req, res) => {
+  console.log(`CHECK EXERCISES`);
+  try {
+    const reObject = await getAllExercisesByUserID(req.params.userId);
+    if (reObject.length === 0) {
+      res.json({ isEmpty: true });
+    } else {
+      res.json({ isEmpty: false });
+    }
+  } catch (err) {
+    res.json({ success: false, msg: err });
+  }
+};
+
 /**
  * Returns all exercises from a user by userId.
  * @param {number} req - req.params.userId
  * @param {object} res - returns an object
  */
 const returnAllExerciseByUserId = async (req, res) => {
+  console.log(`RETURN ALL BY USERID EXERCISES`);
   try {
     const reObject = await getAllExercisesByUserID(req.params.userId);
     res.json(reObject);
@@ -27,6 +42,8 @@ const returnAllExerciseByUserId = async (req, res) => {
  * @param {object} res - returns an object
  */
 const returnAllExerciseByWorkoutId = async (req, res) => {
+  console.log(`RETURN ALL BY WORKOUTID EXERCISES`);
+
   try {
     const reObject = await getAllExerciseByWorkoutId(req.params.workoutId);
     res.json(reObject);
@@ -41,6 +58,8 @@ const returnAllExerciseByWorkoutId = async (req, res) => {
  * @param {object} res - returns an object
  */
 const returnAnExerciseById = async (req, res) => {
+  console.log(`RETURN ALL BY ID EXERCISES`);
+
   try {
     const reObject = await getAnExerciseById(req.params.exerciseId);
     res.json(reObject);
@@ -55,6 +74,8 @@ const returnAnExerciseById = async (req, res) => {
  * @param {object} res - Returns an Object
  */
 const returnAllExercisesByName = async (req, res) => {
+  console.log(`RETURN ALL BY NAME EXERCISES`);
+
   try {
     const reObject = await getAllExercisesByName(req.params.exerciseName);
     res.json(reObject);
@@ -81,6 +102,8 @@ const returnAllExercisesByName = async (req, res) => {
  * @param {object} res - res.json({ success : true/false}).
  */
 const addExercise = async (req, res) => {
+  console.log(`ADD AN EXERCISE`);
+
   //   console.log(`obj`);
   //   console.log(req.body);
 
@@ -149,4 +172,5 @@ module.exports = {
   returnAllExercisesByName,
   addExercise,
   deleteExercise,
+  checkExercises,
 };

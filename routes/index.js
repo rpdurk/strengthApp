@@ -7,8 +7,10 @@ const signInMiddleware = require('../middlewares/signInMiddleware');
 // /api/users
 // router.use('/api/users/');
 
+// ignore singInMiddleware for now
+
 // -> /api/exercise
-router.use('/api/exercise', signInMiddleware, exerciseRoutes);
+router.use('/api/exercise', exerciseRoutes);
 
 // -> /api/workout
 // router.use('/api/workout', workoutRoutes);

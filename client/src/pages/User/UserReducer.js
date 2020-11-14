@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     id: '',
     username: '',
   },
-  curUsername: '',
+  curUsername: null,
   curUserId: null,
   moreState: false,
   credentialError: false,
@@ -21,12 +21,15 @@ const userSlice = createSlice({
       users: action.payload,
     }),
     getUser: (state, action) => ({ ...state, selectedUser: action.payload }),
-    setUsername: (state, action) => {
-      return { ...state, curUsername: action.payload };
+    setCurrentUser: (state, action) => {
+      console.log();
+      return {
+        ...state,
+        curUserId: action.payload.id,
+        curUsername: action.payload.username,
+      };
     },
-    setUserId: (state, action) => {
-      return { ...state, curUserId: action.payload };
-    },
+    setUserId: (state, action) => ({ ...state, curUserId: action.payload }),
     invalidCredentials: (state, action) => ({
       ...state,
       credentialError: true,
@@ -39,10 +42,10 @@ const userSlice = createSlice({
 });
 
 export const {
+  setUserId,
   getUsers,
   getUser,
-  setUserId,
-  setUsername,
+  setCurrentUser,
   invalidCredentials,
   validCredentials,
 } = userSlice.actions;

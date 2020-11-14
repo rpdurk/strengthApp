@@ -6,6 +6,7 @@ const {
   returnAllExercisesByName,
   addExercise,
   deleteExercise,
+  checkExercises,
 } = require('../../controllers/exerciseController');
 // GET Routes
 // GET -> /:userId          -> Returns All by User
@@ -13,17 +14,20 @@ const {
 // GET -> /:workoutId       -> Returns All by Workout
 // GET -> /:exerciseName    -> Returns All by Name
 
+// Checks if exercises exist for user.
+router.get('/check/:userId', checkExercises);
+
 // Get exercises by User ID
-router.get('/:userId', returnAllExerciseByUserId);
+router.get('/user/:userId', returnAllExerciseByUserId);
 
 // Get exercises by Exercise ID
-router.get('/:exerciseId', returnAnExerciseById);
+router.get('/exercise/:exerciseId', returnAnExerciseById);
 
 // Get exercises by Workout ID
-router.get('/:workoutId', returnAllExerciseByWorkoutId);
+router.get('/workout/:workoutId', returnAllExerciseByWorkoutId);
 
 // Get exercises by Exercise Name
-router.get('/:exerciseName', returnAllExercisesByName);
+router.get('/exerciseName/:exerciseName', returnAllExercisesByName);
 
 // Add an Exercise
 router.post('/add', addExercise);
