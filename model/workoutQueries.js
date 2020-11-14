@@ -10,19 +10,18 @@
  *
  */
 
-const findAllWorkoutsByUserId = 
+const findAllWorkoutsByUserId =
   'SELECT id, workoutName FROM workouts WHERE userId = ?;';
 const findWorkoutByIdQuery =
   'SELECT id, workoutName FROM workouts WHERE id = ?;';
 const findWorkoutByWorkoutName =
   'SELECT id FROM workouts WHERE workoutName = ?;';
 const insertWorkout =
-  'INSERT INTO workout (workoutName, userId, workoutDate, exercises) VALUES (?, ?, ?, ?);';
-const deleteWorkoutQuery = 
- 'DELETE FROM workout WHERE ID = ?;';
+  'INSERT INTO workouts (workoutName, userId, exercises) VALUES (?, ?, ?);';
+const deleteWorkoutQuery = 'DELETE FROM workout WHERE ID = ?;';
 
-// seed 
-// 'INSERT INTO workout (workoutName, userId, workoutDate, exercises) 
+// seed
+// 'INSERT INTO workout (workoutName, userId, workoutDate, exercises)
 // VALUES (
 // 'BackDay',
 // 1,

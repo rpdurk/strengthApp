@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 import {
   LineChart,
   Line,
@@ -8,47 +8,47 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
+} from 'recharts';
 
 const data = [
   {
-    name: "Monday",
+    name: 'Monday',
     Previous: 4000,
     Current: 2400,
     amt: 2400,
   },
   {
-    name: "Tuesday",
+    name: 'Tuesday',
     Previous: 3000,
     Current: 1398,
     amt: 2210,
   },
   {
-    name: "Wednesday",
+    name: 'Wednesday',
     Previous: 2000,
     Current: 9800,
     amt: 2290,
   },
   {
-    name: "Thursday",
+    name: 'Thursday',
     Previous: 2780,
     Current: 3908,
     amt: 2000,
   },
   {
-    name: "Friday",
+    name: 'Friday',
     Previous: 1890,
     Current: 4800,
     amt: 2181,
   },
   {
-    name: "Saturday",
+    name: 'Saturday',
     Previous: 2390,
     Current: 3800,
     amt: 2500,
   },
   {
-    name: "Sunday",
+    name: 'Sunday',
     Previous: 3490,
     Current: 4300,
     amt: 2100,
@@ -56,9 +56,9 @@ const data = [
 ];
 
 export default class Example extends PureComponent {
-  static jsfiddleUrl = "https://jsfiddle.net/alidingling/xqjtetw0/";
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
 
-  render() {
+  render(props) {
     return (
       <ResponsiveContainer>
         <LineChart
@@ -72,18 +72,18 @@ export default class Example extends PureComponent {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='name' />
           <YAxis />
           <Tooltip />
           <Legend />
           <Line
-            type="monotone"
-            dataKey="Current"
-            stroke="#ff5722"
+            type='monotone'
+            dataKey='Current'
+            stroke='#ff5722'
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="Previous" stroke="#82ca9d" />
+          <Line type='monotone' dataKey='Previous' stroke='#82ca9d' />
         </LineChart>
       </ResponsiveContainer>
     );

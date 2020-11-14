@@ -88,14 +88,14 @@ const returnAllExercisesByName = async (req, res) => {
  * POST -> Takes in an object with the following
  * Takes in an exercise Object which must contain all of the following. If you have empty values add 'et' for empty
  * @param {Object} req - Takes in an exercise Object. See the following for structure and details.
- * @param {String} req.body.name - Name of exercise
+ * @param {String} req.body.exerciseName - Name of exercise
  * @param {String} req.body.muscleUsed - Can be empty - Muscle used with this exercise
  * @param {Number} req.body.userId -  A User ID to be associated with this exercise.
  * @param {Number} req.body.workoutId - A Workout ID to be associated with this exercise.
- * @param {Date}   req.body.date - Date as in SQL -> Format 'YYYY-MM-DD';
+ * @param {Date}   req.body.exerciseDate - Date as in SQL -> Format 'YYYY-MM-DD';
  * @param {Number} req.body.setTotal  - Total amount of sets
- * @param {String} req.body.repsGoalPerSet - This would be a Stringified Object. Formatted as {'set0': 15, 'set1' : 30}
- * @param {String} req.body.repsCompletedPerSet - This would be a Stringified Object. Formatted as {'set0': 8, 'set1' : 12}
+ * @param {String} req.body.reptitionGoalPerSet - This would be a Stringified Object. Formatted as {'set0': 15, 'set1' : 30}
+ * @param {String} req.body.reptitionsCompletedPerSet - This would be a Stringified Object. Formatted as {'set0': 8, 'set1' : 12}
  * @param {String} req.body.weightUsedPerSet - Can be empty - This would be a Stringified Object. Formatted as {'set0': 15, 'set1' : 30} -> Weight always in LBs (Pounds).
  * @param {String} req.body.timeUsedPerSet - Can be empty -This would be a Stringified Object. Formatted as {'set0': 300} -> Time always in seconds
  * @param {String} req.body.restTimeUsedPerSet - Can be empty - This would be a Stringified Object. Formatted as {'set0': 300} -> Time always in seconds
@@ -104,32 +104,26 @@ const returnAllExercisesByName = async (req, res) => {
 const addExercise = async (req, res) => {
   console.log(`ADD AN EXERCISE`);
 
-  //   console.log(`obj`);
-  //   console.log(req.body);
-
   const reObject = req.body;
   let empty = false;
 
   // Array of Keys to test if these exist
   const keys = [
-    'name',
+    'exerciseName',
     'muscleUsed',
     'userId',
     'workoutId',
-    'date',
+    'exerciseDate',
     'setTotal',
-    'repsGoalPerSet',
-    'repsCompletedPerSet',
+    'reptitionGoalPerSet',
+    'reptitionsCompletedPerSet',
     'weightUsedPerSet',
     'timeUsedPerSet',
-    'restTimeUsedPerSet',
+    'restUsedPerSet',
   ];
 
-  // Check the validity of Object -> Not empty and Length is 10
-  if (
-    Object.keys(reObject).length !== 0 ||
-    Object.keys(reObject).length === 11
-  ) {
+  // Check the validity of Object -> Not empty and Length is 11
+  if (Object.keys(reObject).length === 11) {
     keys.forEach((el) => {
       if (typeof reObject[el] === 'undefined') {
         empty = true;
