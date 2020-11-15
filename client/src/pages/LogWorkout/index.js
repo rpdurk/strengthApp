@@ -254,7 +254,7 @@ const LogWorkout = () => {
               {exerciseList.map((name, index) => {
                 counter = index;
                 return (
-                  <>
+                  <div>
                     <Typography
                       gutterBottom
                       align='center'
@@ -384,7 +384,7 @@ const LogWorkout = () => {
                         );
                       })}
                     </TableRow>
-                  </>
+                  </div>
                 );
               })}
             </TableBody>
