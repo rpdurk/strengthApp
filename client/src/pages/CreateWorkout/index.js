@@ -54,30 +54,83 @@ const useStyles = makeStyles(theme => ({
 export default function BasicTable() {
   const [formInputs, setFormInputs] = useState({});
   const [exerciseList, setExerciseList] = useState([]);
+  const [workoutName, setWorkoutName] = useState('');
   const [filteredExercises, setFilteredExercises] = useState([]);
-  const [exercise, setExercise] = useState([
-    {
-      value: "",
-    },
-  ]);
-  let counter = 0;
-  const handleSubmit = e => {
-    e.preventDefault();
-    let exercises = {};
-    for (let i = 0; i < counter; i++) {
-      console.log(document.getElementById(`tf${i}`));
+  const [exercise, setExercise] = useState([]);
+  const { dispatch, history } = useUtils();
+
+  let userId = useSelector((state) => state.user.curUserId);
+
+  if (userId === null) {
+    userId = localStorage.getItem('userId');
+    if (!userId) {
+      history.push('/');
+    } else {
+      dispatch(setUserId(userId));
     }
+  }
+
+  // Component Variables
+  let counter = 0;
+  let workoutObj = {};
+  let newExercise = {
+    value: '',
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let tempArr = [];
+
+    // Loop through and reset
+    for (let i = 0; i <= counter; i++) {
+      tempArr.push(document.getElementById(`exercise${i}`).value);
+      document.getElementById(`exercise${i}`).value = '';
+    }
+
+    newExercise = {
+      value: '',
+    };
+
+    setExercise([newExercise]);
+    let exercises = JSON.stringify(tempArr);
+
+    // workout name
+    // userid
+    // exercises
+
+    workoutObj = {
+      workoutName,
+      userId,
+      exercises,
+    };
+
+    // Axios push
+    axios.post('/api/workout/addWorkout', workoutObj).then((res) => {
+      console.log(res.data);
+    });
+
+    // console.log(test);
+    // Get workout
+
+    // axios.get(`/api/workout/user/${userId}`).then((res) => {
+    //   console.log(res.data);
+    // });
+
+    // console.log('workouts', workouts);
+  };
+
   const classes = useStyles();
+
   useEffect(async () => {
     // Runs after the first render() lifecycle
     axios
-      .get("https://wger.de/api/v2/exercise/?language=2&limit=999&ordering=id")
-      .then(res => {
-        const exerciseResultsList = res.data.results.filter(
-          exercise => exercise.muscles.length !== 0
-        );
-        const exerciseList = exerciseResultsList.map(singleExercise => {
+      .get('https://wger.de/api/v2/exercise/?language=2&limit=999&ordering=id')
+      .then((res) => {
+        // Filter out exercieses with no muscle details
+        const exerciseResultsList = res.data.results.filter((exercise) => {
+          return exercise.muscles.length !== 0 && exercise.name;
+        });
+        const exerciseList = exerciseResultsList.map((singleExercise) => {
           const exerciseName = singleExercise.name;
           //   console.log(exerciseName);
           return exerciseName;
@@ -94,15 +147,17 @@ export default function BasicTable() {
           : theme.typography.fontWeightMedium,
     };
   }
+
   return (
-    <Container maxWidth="xl" className={classes.container}>
-      <Box display="flex" justifyContent="center" p={2}>
+    <Container maxWidth='xl' className={classes.container}>
+      <Box display='flex' justifyContent='center' p={2}>
         <TextField
           className={classes.bottom}
-          id="workoutName"
-          label="Workout Name"
-          variant="outlined"
-          justifyContent="center"
+          id='workoutName'
+          label='Workout Name'
+          variant='outlined'
+          justifyContent='center'
+          onChange={(e) => setWorkoutName(e.target.value)}
         />
       </Box>
       <TableContainer component={Paper}>
@@ -134,19 +189,18 @@ export default function BasicTable() {
                   counter = index;
                   return (
                     <TableRow>
-                      <TableCell component="th" scope="row">
+                      <TableCell component='th' scope='row'>
                         <FormControl className={classes.formControl}>
                           <Autocomplete
-                            id={index}
+                            id={`exercise${index}`}
                             options={exerciseList}
-                            getOptionLabel={option => option}
+                            getOptionLabel={(option) => option}
                             style={{ width: 400 }}
-                            renderInput={params => (
+                            renderInput={(params) => (
                               <TextField
                                 {...params}
-                                id={`tf${index}`}
-                                label="Choose your exercise"
-                                variant="outlined"
+                                label='Choose your exercise'
+                                variant='outlined'
                               />
                             )}
                           />
@@ -160,12 +214,13 @@ export default function BasicTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Box display="flex" justifyContent="center" p={2}>
+      <Box display='flex' justifyContent='center' p={2}>
         <Button
           onClick={handleSubmit}
           className={classes.top}
-          color="primary"
-          variant="contained"
+          color='primary'
+          variant='contained'
+
         >
           Create
         </Button>
