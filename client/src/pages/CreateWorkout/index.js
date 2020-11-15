@@ -179,6 +179,9 @@ export default function BasicTable() {
                     className={classes.iconButton}
                     onClick={(e) => {
                       e.preventDefault();
+                      const newExercise = {
+                        value: '',
+                      };
 
                       setExercise([...exercise, newExercise]);
                     }}
