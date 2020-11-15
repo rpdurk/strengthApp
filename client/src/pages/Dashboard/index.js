@@ -109,6 +109,51 @@ const Dashboard = () => {
     getData();
   }, []);
 
+  const data = [
+    {
+      name: 'Monday',
+      Previous: 4000,
+      Current: 2400,
+      amt: 2400,
+    },
+    {
+      name: 'Tuesday',
+      Previous: 3000,
+      Current: 1398,
+      amt: 2210,
+    },
+    {
+      name: 'Wednesday',
+      Previous: 2000,
+      Current: 9800,
+      amt: 2290,
+    },
+    {
+      name: 'Thursday',
+      Previous: 2780,
+      Current: 3908,
+      amt: 2000,
+    },
+    {
+      name: 'Friday',
+      Previous: 1890,
+      Current: 4800,
+      amt: 2181,
+    },
+    {
+      name: 'Saturday',
+      Previous: 2390,
+      Current: 3800,
+      amt: 2500,
+    },
+    {
+      name: 'Sunday',
+      Previous: 3490,
+      Current: 4300,
+      amt: 2100,
+    },
+  ];
+
   return (
     <Container maxWidth='xl' className={classes.container}>
       <Grid container spacing={3}>
@@ -153,7 +198,7 @@ const Dashboard = () => {
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
             <h1>Weekly Volume</h1>
-            <VolumeChart />
+            <VolumeChart data={data} />
           </Paper>
         </Grid>
         {/* Muscles Used */}
