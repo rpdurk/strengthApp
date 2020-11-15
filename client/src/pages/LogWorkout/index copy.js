@@ -28,7 +28,6 @@ import { useSelector } from 'react-redux';
 import { useUtils } from '../common';
 import { setUserId } from '../User/UserReducer';
 import uniqid from 'uniqid';
-import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,12 +88,6 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     alignItems: 'center',
     border: 0,
-  },
-  titleFont: {
-    fontWeight: '400',
-  },
-  centerText: {
-    textAlign: 'center',
   },
 }));
 
@@ -215,15 +208,6 @@ const LogWorkout = () => {
     setExerciseList(JSON.parse(tempArr));
   };
 
-  const getToday = () => {
-    var today = new Date();
-    var DD = String(today.getDate()).padStart(2, '0');
-    var MM = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var YYYY = today.getFullYear();
-
-    return `${YYYY}-${MM}-${DD}`;
-  };
-
   // Get workoutNames from DB
   useEffect(() => {
     if (reRender) {
@@ -270,137 +254,158 @@ const LogWorkout = () => {
             )}
           />
         </FormControl>
-        {/* List exercises with inputs */}
-        <Grid className={classes.table}>
-          <div>
-            {exerciseList.map((name, index) => {
-              counter = index;
-              return (
-                <div>
-                  <h2 className={classes.titleFont}>{name}</h2>
-                  <TableRow>
-                    <TableCell>
-                      <Button
-                        className={classes.iconButton}
-                        onClick={(e) => console.log(e)}
-                      >
-                        <Icon
-                          className='fa fa-plus-circle'
-                          style={{ fontSize: 36 }}
-                        />
-                      </Button>
-                    </TableCell>
+        {/* here are the inputs all the workout sets */}
+        <form className={classes.root} noValidate autoComplete='off'>
+          <Table className={classes.table}>
+            <TableBody>
+              {exerciseList.map((name, index) => {
+                counter = index;
+                return (
+                  <div>
+                    <Typography
+                      gutterBottom
+                      align='center'
+                      variant='h5'
+                      component='h2'
+                    >
+                      {name}
+                    </Typography>
 
-                    {numSets.map((_element, index) => {
-                      return (
-                        <TableRow id={uniqid()}>
-                          <TableCell>
-                            <TextField
-                              id={`set${name}${index}`}
-                              name={name}
-                              onChange={(e) =>
-                                name === 'Bench Press'
-                                  ? setBenchPressSet(e.target.value)
-                                  : name === 'Push Ups'
-                                  ? setPushUpsSet(e.target.value)
-                                  : name === 'Sit Ups'
-                                  ? setSitUpsSet(e.target.value)
-                                  : undefined
-                              }
-                              value={
-                                name === 'Bench Press'
-                                  ? benchPressSet
-                                  : name === 'Push Ups'
-                                  ? pushUpsSet
-                                  : name === 'Sit Ups'
-                                  ? sitUpsSet
-                                  : undefined
-                              }
-                              label='Sets'
-                              type='number'
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                              variant='outlined'
-                            />
-                          </TableCell>
+                    <TableRow>
+                      <TableCell>
+                        <Button
+                          id={`btn${name}${index}`}
+                          className={classes.iconButton}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById(`exercise${name}${index}`);
+                            // console.log(e.target.id);
 
-                          <TableCell>
-                            <TextField
-                              id={`rep${name}${index}`}
-                              onChange={(e) =>
-                                name === 'Bench Press'
-                                  ? setBenchPressRep(e.target.value)
-                                  : name === 'Push Ups'
-                                  ? setPushUpsRep(e.target.value)
-                                  : name === 'Sit Ups'
-                                  ? setSitUpsRep(e.target.value)
-                                  : undefined
-                              }
-                              value={
-                                name === 'Bench Press'
-                                  ? benchPressRep
-                                  : name === 'Push Ups'
-                                  ? pushUpsRep
-                                  : name === 'Sit Ups'
-                                  ? sitUpsRep
-                                  : undefined
-                              }
-                              label='Repetitions'
-                              variant='outlined'
-                            />
-                          </TableCell>
+                            const newSet = {
+                              set: '',
+                              repetitions: '',
+                              weight: '',
+                            };
+                            setNumSets([...numSets, newSet]);
+                          }}
+                        >
+                          <Icon
+                            className='fa fa-plus-circle'
+                            style={{ fontSize: 36 }}
+                          />
+                        </Button>
+                      </TableCell>
 
-                          <TableCell>
-                            <TextField
-                              id={`weight${name}${index}`}
-                              onChange={(e) =>
-                                name === 'Bench Press'
-                                  ? setBenchPressWeight(e.target.value)
-                                  : name === 'Push Ups'
-                                  ? setPushUpsWeight(e.target.value)
-                                  : name === 'Sit Ups'
-                                  ? setSitUpsWeight(e.target.value)
-                                  : undefined
-                              }
-                              value={
-                                name === 'Bench Press'
-                                  ? benchPressWeight
-                                  : name === 'Push Ups'
-                                  ? pushUpsWeight
-                                  : name === 'Sit Ups'
-                                  ? sitUpsWeight
-                                  : undefined
-                              }
-                              label='Weight'
-                              variant='outlined'
-                            />
-                          </TableCell>
+                      {numSets.map((_element, index) => {
+                        return (
+                          <TableRow id={uniqid()}>
+                            <TableCell>
+                              <TextField
+                                id={`set${name}${index}`}
+                                name={name}
+                                onChange={(e) =>
+                                  name === 'Bench Press'
+                                    ? setBenchPressSet(e.target.value)
+                                    : name === 'Push Ups'
+                                    ? setPushUpsSet(e.target.value)
+                                    : name === 'Sit Ups'
+                                    ? setSitUpsSet(e.target.value)
+                                    : undefined
+                                }
+                                value={
+                                  name === 'Bench Press'
+                                    ? benchPressSet
+                                    : name === 'Push Ups'
+                                    ? pushUpsSet
+                                    : name === 'Sit Ups'
+                                    ? sitUpsSet
+                                    : undefined
+                                }
+                                label='Sets'
+                                type='number'
+                                InputLabelProps={{
+                                  shrink: true,
+                                }}
+                                variant='outlined'
+                              />
+                            </TableCell>
 
-                          <TableCell>
-                            <FormControlLabel
-                              id={`check${name}${index}`}
-                              control={<Checkbox name='checked' />}
-                              label='completed'
-                            />
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  </TableRow>
-                </div>
-              );
-            })}
-          </div>
-        </Grid>
+                            <TableCell>
+                              <TextField
+                                id={`rep${name}${index}`}
+                                onChange={(e) =>
+                                  name === 'Bench Press'
+                                    ? setBenchPressRep(e.target.value)
+                                    : name === 'Push Ups'
+                                    ? setPushUpsRep(e.target.value)
+                                    : name === 'Sit Ups'
+                                    ? setSitUpsRep(e.target.value)
+                                    : undefined
+                                }
+                                value={
+                                  name === 'Bench Press'
+                                    ? benchPressRep
+                                    : name === 'Push Ups'
+                                    ? pushUpsRep
+                                    : name === 'Sit Ups'
+                                    ? sitUpsRep
+                                    : undefined
+                                }
+                                label='Repetitions'
+                                variant='outlined'
+                              />
+                            </TableCell>
+
+                            <TableCell>
+                              <TextField
+                                id={`weight${name}${index}`}
+                                onChange={(e) =>
+                                  name === 'Bench Press'
+                                    ? setBenchPressWeight(e.target.value)
+                                    : name === 'Push Ups'
+                                    ? setPushUpsWeight(e.target.value)
+                                    : name === 'Sit Ups'
+                                    ? setSitUpsWeight(e.target.value)
+                                    : undefined
+                                }
+                                value={
+                                  name === 'Bench Press'
+                                    ? benchPressWeight
+                                    : name === 'Push Ups'
+                                    ? pushUpsWeight
+                                    : name === 'Sit Ups'
+                                    ? sitUpsWeight
+                                    : undefined
+                                }
+                                label='Weight'
+                                variant='outlined'
+                              />
+                            </TableCell>
+
+                            <TableCell>
+                              <FormControlLabel
+                                id={`check${name}${index}`}
+                                control={<Checkbox name='checked' />}
+                                label='completed'
+                              />
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableRow>
+                  </div>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </form>
 
         <Box display='flex' justifyContent='center' p={2}>
           <TextField
             id='date'
             label='Workout Date'
-            format='MM/DD/YYYY'
             type='date'
-            defaultValue={getToday()}
+            defaultValue='2017-05-24'
             className={(classes.textField, classes.marginLeftAuto)}
             InputLabelProps={{
               shrink: true,

@@ -4,7 +4,6 @@ import {
   Redirect,
   Route,
   Switch,
-  useHistory,
 } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Drawer from './pages/Drawer';
@@ -32,39 +31,19 @@ function App() {
           <Drawer>
             <Switch>
               <Route exact path='/dashboard'>
-                {viewer.token ? (
-                  <Dashboard />
-                ) : (
-                  <Redirect to='/' />
-                )}
+                {viewer.token ? <Dashboard /> : <Redirect to='/' />}
               </Route>
               <Route exact path='/create'>
-                {viewer.token ? (
-                  <CreateWorkout />
-                ) : (
-                  <Redirect to='/' />
-                )}
+                {viewer.token ? <CreateWorkout /> : <Redirect to='/' />}
               </Route>
               <Route exact path='/log'>
-                {viewer.token ? (
-                  <LogWorkout />
-                ) : (
-                  <Redirect to='/' />
-                )}
+                {viewer.token ? <LogWorkout /> : <Redirect to='/' />}
               </Route>
               <Route exact path='/progress'>
-                {viewer.token ? (
-                  <Progress />
-                ) : (
-                  <Redirect to='/' />
-                )}
+                {viewer.token ? <Progress /> : <Redirect to='/' />}
               </Route>
               <Route exact path='/account'>
-                {viewer.token ? (
-                  <Account />
-                ) : (
-                  <Redirect to='/' />
-                )}
+                {viewer.token ? <Account /> : <Redirect to='/' />}
               </Route>
             </Switch>
           </Drawer>
