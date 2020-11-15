@@ -1,75 +1,63 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Container from '@material-ui/core/Container';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import clsx from 'clsx';
-import Input from '@material-ui/core/Input';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import { searchExercises } from '../../utils/API';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Icon from '@material-ui/core/Icon';
-import { useSelector } from 'react-redux';
-import { useUtils } from '../common';
-import { setUserId } from '../User/UserReducer';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Paper,
+  Container,
+  TextField,
+  Button,
+  Box,
+  Icon,
+  FormControl,
+} from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { useUtils } from "../common";
+import { setUserId } from "../User/UserReducer";
+// import { FormControl } from "@material-ui/core/FormControl";
 
-const useStyles = makeStyles((theme) => ({
-  table: {
-    minWidth: 750,
-    margin: '0 auto',
-    alignItems: 'center',
-    border: 0,
-  },
+const useStyles = makeStyles(theme => ({
   container: {
-    paddingTop: theme.spacing(6),
-    paddingBottom: theme.spacing(4),
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   paper: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    margin: '0 auto',
-    overflow: 'auto',
-    flexDirection: 'column',
-    textAlign: 'center',
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
-  fixedHeight: {
-    height: 350,
+
+  createBtn: {
+    fontSize: 20,
   },
-  bottom: {
-    marginBottom: theme.spacing(4),
-  },
-  top: {
-    marginTop: theme.spacing(4),
+
+  row: {
+    marginTop: theme.spacing(2),
   },
 }));
 
-export default function BasicTable() {
-  const [formInputs, setFormInputs] = useState({});
+export default function CreateWorkout() {
   const [exerciseList, setExerciseList] = useState([]);
-  const [workoutName, setWorkoutName] = useState('');
-  const [filteredExercises, setFilteredExercises] = useState([]);
+  const [workoutName, setWorkoutName] = useState("");
   const [exercise, setExercise] = useState([]);
+  const [workoutNameErr, setWorkoutNameErr] = useState(false);
+  const [exerciseNameErr, setExerciseNameErr] = useState(false);
+
   const { dispatch, history } = useUtils();
 
-  let userId = useSelector((state) => state.user.curUserId);
+  let userId = useSelector(state => state.user.curUserId);
 
   if (userId === null) {
-    userId = localStorage.getItem('userId');
+    userId = localStorage.getItem("userId");
     if (!userId) {
-      history.push('/');
+      history.push("/");
     } else {
       dispatch(setUserId(userId));
     }
@@ -79,49 +67,58 @@ export default function BasicTable() {
   let counter = 0;
   let workoutObj = {};
   let newExercise = {
-    value: '',
+    value: "",
   };
 
-  const handleSubmit = (e) => {
+  // Create Workout click
+  const handleSubmit = e => {
     e.preventDefault();
-    let tempArr = [];
 
-    // Loop through and reset
-    for (let i = 0; i <= counter; i++) {
-      tempArr.push(document.getElementById(`exercise${i}`).value);
-      document.getElementById(`exercise${i}`).value = '';
+    //Requires workout name
+    if (workoutName === "") {
+      setWorkoutNameErr(true);
+      setTimeout(() => {
+        setWorkoutNameErr(false);
+      }, 3000);
+    } else {
+      let tempArr = [];
+
+      // Loop through and reset
+      for (let i = 0; i <= counter; i++) {
+        let value = document.getElementById(`exercise${i}`).value;
+
+        // Exercise name input error
+        if (value === "") {
+          setExerciseNameErr(true);
+        } else {
+          tempArr.push(value);
+          document.getElementById(`exercise${i}`).value = "";
+        }
+      }
+
+      newExercise = {
+        value: "",
+      };
+
+      setExercise([newExercise]);
+      let exercises = JSON.stringify(tempArr);
+
+      workoutObj = {
+        workoutName,
+        userId,
+        exercises,
+      };
+
+      // Axios push
+      axios.post("/api/workout/addWorkout", workoutObj).then(res => {
+        console.log(res.data);
+      });
+
+      // Clears exercises
+      counter = 0;
+      setExercise([]);
+      setWorkoutName("");
     }
-
-    newExercise = {
-      value: '',
-    };
-
-    setExercise([newExercise]);
-    let exercises = JSON.stringify(tempArr);
-
-    // workout name
-    // userid
-    // exercises
-
-    workoutObj = {
-      workoutName,
-      userId,
-      exercises,
-    };
-
-    // Axios push
-    axios.post('/api/workout/addWorkout', workoutObj).then((res) => {
-      console.log(res.data);
-    });
-
-    // console.log(test);
-    // Get workout
-
-    // axios.get(`/api/workout/user/${userId}`).then((res) => {
-    //   console.log(res.data);
-    // });
-
-    // console.log('workouts', workouts);
   };
 
   const classes = useStyles();
@@ -129,13 +126,13 @@ export default function BasicTable() {
   useEffect(() => {
     // Runs after the first render() lifecycle
     axios
-      .get('https://wger.de/api/v2/exercise/?language=2&limit=999&ordering=id')
-      .then((res) => {
-        // Filter out exercieses with no muscle details
-        const exerciseResultsList = res.data.results.filter((exercise) => {
+      .get("https://wger.de/api/v2/exercise/?language=2&limit=999&ordering=id")
+      .then(res => {
+        // Filter out exercises with no muscle details
+        const exerciseResultsList = res.data.results.filter(exercise => {
           return exercise.muscles.length !== 0 && exercise.name;
         });
-        const exerciseList = exerciseResultsList.map((singleExercise) => {
+        const exerciseList = exerciseResultsList.map(singleExercise => {
           const exerciseName = singleExercise.name;
           //   console.log(exerciseName);
           return exerciseName;
@@ -144,92 +141,79 @@ export default function BasicTable() {
         setExerciseList(exerciseList);
       });
   }, []);
-
-  function getStyles(name, nums, theme) {
-    return {
-      fontWeight:
-        nums.indexOf(name) === -1
-          ? theme.typography.fontWeightRegular
-          : theme.typography.fontWeightMedium,
-    };
-  }
-
   return (
-    <Container maxWidth='xl' className={classes.container}>
-      <Box display='flex' justifyContent='center' p={2}>
-        <TextField
-          className={classes.bottom}
-          id='workoutName'
-          label='Workout Name'
-          variant='outlined'
-          justifyContent='center'
-          onChange={(e) => setWorkoutName(e.target.value)}
-        />
+    <Container maxWidth="xl" className={classes.container}>
+      <Box>
+        {workoutNameErr ? (
+          <TextField
+            error
+            variant="outlined"
+            id={workoutNameErr ? "outlined-error-helper-text" : "email"}
+            label={workoutNameErr ? "Enter workout name" : "Workout Name"}
+            name="workoutName"
+            onChange={e => setWorkoutName(e.target.value)}
+          />
+        ) : (
+          <TextField
+            required
+            variant="outlined"
+            id="workoutName"
+            label="Workout Name"
+            name="workoutName"
+            onChange={e => setWorkoutName(e.target.value)}
+          />
+        )}
       </Box>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label='simple table'>
-          <TableHead>
-            <TableRow>{/* <TableCell>Exercises</TableCell> */}</TableRow>
-          </TableHead>
-          <TableBody>
-            <Box display='flex' justifyContent='center' p={2}>
-              <TableRow>
-                <TableCell>
-                  <Button
-                    className={classes.iconButton}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const newExercise = {
-                        value: '',
-                      };
-
-                      setExercise([...exercise, newExercise]);
-                    }}
-                  >
-                    <Icon
-                      className='fa fa-plus-circle'
-                      style={{ fontSize: 36 }}
-                    />
-                  </Button>
-                </TableCell>
-                {exercise.map((_element, index) => {
-                  counter = index;
-
-                  return (
-                    <TableRow>
-                      <TableCell component='th' scope='row'>
-                        <FormControl className={classes.formControl}>
-                          <Autocomplete
-                            id={`exercise${index}`}
-                            options={exerciseList}
-                            getOptionLabel={(option) => option}
-                            style={{ width: 400 }}
-                            renderInput={(params) => (
-                              <TextField
-                                {...params}
-                                label='Choose your exercise'
-                                variant='outlined'
-                              />
-                            )}
-                          />
-                        </FormControl>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableRow>
-            </Box>
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Box display='flex' justifyContent='center' p={2}>
+      <Container className={classes.paper} component={Paper}>
+        <Box className={classes.addBtn}>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              const newExercise = {
+                value: "",
+              };
+              setExercise([...exercise, newExercise]);
+            }}
+            color="primary"
+            variant="contained"
+          >
+            Add Exercise
+            <Icon
+              className="fa fa-plus-circle"
+              style={{ marginLeft: "1rem" }}
+            />
+          </Button>
+        </Box>
+        {exercise.map((_element, index) => {
+          counter = index;
+          return (
+            <div className={classes.row}>
+              <Autocomplete
+                id={`exercise${index}`}
+                options={exerciseList}
+                getOptionLabel={option => option}
+                style={{ width: 400 }}
+                renderInput={params => (
+                  <TextField
+                    required
+                    {...params}
+                    label="Choose exercise"
+                    variant="outlined"
+                  />
+                )}
+              />
+            </div>
+          );
+        })}
+      </Container>
+      <Box>
         <Button
+          className={classes.createBtn}
           onClick={handleSubmit}
-          className={classes.top}
-          color='primary'
-          variant='contained'
+          color="primary"
+          variant="contained"
         >
-          Create
+          Create Workout
         </Button>
       </Box>
     </Container>
