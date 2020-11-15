@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -13,6 +13,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import Select from "@material-ui/core/Select";
 import clsx from "clsx";
 import Input from "@material-ui/core/Input";
@@ -21,7 +22,6 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
-import DatePicker from "../common/components/DatePicker";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useSelector } from "react-redux";
@@ -176,26 +176,41 @@ const LogWorkout = () => {
     setAge(event.target.value);
   };
 
-  const exerciseName = ["Bench Press", "Push Ups", "Sit Ups"];
+  const [workoutList, setWorkoutList] = useState([]);
+
+  // Get workoutNames from DB
+    useEffect(() => {
+      axios
+        .get(`/api/workout/user/${userId}`)
+        .then((res) => {
+          const workoutNameLists = res.data.map((singleWorkout) => {
+            const workoutName = singleWorkout.workoutName
+          return workoutName;
+        });
+      setWorkoutList(workoutNameLists);
+    });
+  }, []);
 
   return (
     <Container maxWidth="xl" className={classes.container}>
       <Paper className={classes.paper}>
         {/* drop down list showing all the workout has been created */}
         <FormControl className={classes.select}>
-          <InputLabel>Choose a workout</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            onChange={handleChange}
-          >
-            <MenuItem value={10}>Bench Press</MenuItem>
-            <MenuItem value={20}>Squat</MenuItem>
-            <MenuItem value={30}>Deadlift</MenuItem>
-          </Select>
+          <Autocomplete
+            id={`ExerciseName`}
+            options={workoutList}
+            getOptionLabel={option => option}
+            style={{ width: 400 }}
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="Choose your exercise"
+                variant="outlined"
+              />
+            )}
+          />
         </FormControl>
-        {0 < benchPressCompleted.length ? (
+        {0 < workoutList.length ? (
           <Container>
             <Typography>Bench Press Completed</Typography>
             {benchPressCompleted.map(benchPress => {
@@ -214,7 +229,7 @@ const LogWorkout = () => {
         <form className={classes.root} noValidate autoComplete="off">
           <Table className={classes.table}>
             <TableBody>
-              {exerciseName.map((name, index) => {
+              {workoutList.map((name, index) => {
                 counter = index;
                 return (
                   <div>
