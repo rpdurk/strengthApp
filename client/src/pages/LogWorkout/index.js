@@ -68,6 +68,21 @@ const useStyles = makeStyles((theme) => ({
     width: '6ch',
   },
 
+  marginRightAuto: {
+    marginRight: 'auto',
+    marginLeft: '1rem',
+  },
+
+  marginLeftAuto: {
+    marginLeft: 'auto',
+    marginRight: '1rem',
+  },
+
+  centerInput: {
+    margin: '1rem auto',
+    textAlign: 'center',
+  },
+
   table: {
     minWidth: 750,
     margin: '0 auto',
@@ -231,7 +246,7 @@ const LogWorkout = () => {
     <Container maxWidth='xl' className={classes.container}>
       <Paper className={classes.paper}>
         {/* drop down list showing all the workout has been created */}
-        <FormControl className={classes.select}>
+        <FormControl className={classes.centerInput}>
           <Autocomplete
             id={'workoutIds'}
             options={workoutNames}
@@ -287,9 +302,10 @@ const LogWorkout = () => {
                           />
                         </Button>
                       </TableCell>
+
                       {numSets.map((_element, index) => {
                         return (
-                          <TableRow id={`exercise${name}${index}`}>
+                          <TableRow id={uniqid()}>
                             <TableCell>
                               <TextField
                                 id={`set${name}${index}`}
@@ -389,6 +405,19 @@ const LogWorkout = () => {
               })}
             </TableBody>
           </Table>
+        </form>
+
+        <Box display='flex' justifyContent='center' p={2}>
+          <Button
+            m={3}
+            // onClick={handleSubmit}
+            id='workoutDate'
+            className={classes.button}
+            color='primary'
+            variant='contained'
+          >
+            Save
+          </Button>
           <TextField
             id='date'
             label='Workout Date'
@@ -399,17 +428,6 @@ const LogWorkout = () => {
               shrink: true,
             }}
           />
-        </form>
-        <Box display='flex' justifyContent='center' p={2}>
-          <Button
-            // onClick={handleSubmit}
-            id='workoutDate'
-            className={classes.button}
-            color='primary'
-            variant='contained'
-          >
-            Finish
-          </Button>
         </Box>
       </Paper>
     </Container>
