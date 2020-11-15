@@ -6,10 +6,10 @@ const {
   addUserBiometrics,
 } = require('../../controllers/biometricController');
 // GET Routes
-// GET -> /:userId          -> Returns All by User ID
 // GET -> /:userId              -> Returns height by User Id
 // GET -> /:userId       -> Returns weight by User Id
 // GET -> /:userId      -> Returns date weight was measured by User Id
+// Post -> /add      -> Adds Biometric data to database
 
 // Get height by User ID
 router.get('/:userId', returnUsersHeightByUserId);
