@@ -10,8 +10,7 @@
  *
  */
 
-const findAllWorkoutsByUserId =
-  'SELECT id, workoutName FROM workouts WHERE userId = ?;';
+const findAllWorkoutsByUserId = 'SELECT * FROM workouts WHERE userId = ?;';
 const findWorkoutByIdQuery =
   'SELECT id, workoutName FROM workouts WHERE id = ?;';
 const findWorkoutByWorkoutName =

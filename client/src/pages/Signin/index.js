@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useFetchUser } from './SignInHooks';
 import { useSelector } from 'react-redux';
 import { useUtils } from '../common';
-import { validCredentials } from '../User/UserReducer';
+import { setUserId, validCredentials } from '../User/UserReducer';
 
 function Copyright() {
   return (
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
-  const { dispatch } = useUtils();
+  const { history, dispatch } = useUtils();
 
   // Sign In
   const [username, setUsername] = useState('');
@@ -75,6 +75,17 @@ export default function SignInSide() {
   let signInFunc = useFetchUser();
 
   let credentialsError = useSelector((state) => state.user.credentialError);
+
+  // Get or Set userId
+  let userId = useSelector((state) => state.user.curUserId);
+
+  if (userId === null) {
+    userId = localStorage.getItem('userId');
+    if (userId) {
+      history.push('/dashboard');
+      dispatch(setUserId(userId));
+    }
+  }
 
   const onSubmit = () => {
     signInFunc(username, password);
