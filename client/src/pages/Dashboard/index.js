@@ -78,7 +78,7 @@ const Dashboard = () => {
         let res = await axios.get('/api/exercise/user/1');
 
         if (res) {
-          console.log(res);
+          console.log(res `results console log on 81-dashboard`);
         }
       } else {
         console.log(`isEmpty ${isEmpty}`);
