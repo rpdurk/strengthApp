@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
 }));
+
 export default function BasicTable() {
   const [formInputs, setFormInputs] = useState({});
   const [exerciseList, setExerciseList] = useState([]);
@@ -125,7 +126,7 @@ export default function BasicTable() {
 
   const classes = useStyles();
 
-  useEffect(async () => {
+  useEffect(() => {
     // Runs after the first render() lifecycle
     axios
       .get('https://wger.de/api/v2/exercise/?language=2&limit=999&ordering=id')
@@ -143,6 +144,7 @@ export default function BasicTable() {
         setExerciseList(exerciseList);
       });
   }, []);
+
   function getStyles(name, nums, theme) {
     return {
       fontWeight:
@@ -180,6 +182,7 @@ export default function BasicTable() {
                       const newExercise = {
                         value: '',
                       };
+
                       setExercise([...exercise, newExercise]);
                     }}
                   >
@@ -191,6 +194,7 @@ export default function BasicTable() {
                 </TableCell>
                 {exercise.map((_element, index) => {
                   counter = index;
+
                   return (
                     <TableRow>
                       <TableCell component='th' scope='row'>
