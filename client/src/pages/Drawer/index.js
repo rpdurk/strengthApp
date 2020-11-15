@@ -25,8 +25,6 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Banner from "../common/components/Banner";
-import Logo from "../common/components/Logo";
-// import { Box } from "@material-ui/core";
 
 const drawerWidth = 240;
 
