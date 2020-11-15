@@ -177,19 +177,32 @@ const LogWorkout = () => {
   };
 
   const [workoutList, setWorkoutList] = useState([]);
+  const [exerciseList, setExerciseList] = useState([]);
 
   // Get workoutNames from DB
     useEffect(() => {
       axios
         .get(`/api/workout/user/${userId}`)
         .then((res) => {
-          const workoutNameLists = res.data.map((singleWorkout) => {
+         const workoutNameLists = res.data.map((singleWorkout) => {
             const workoutName = singleWorkout.workoutName
           return workoutName;
         });
       setWorkoutList(workoutNameLists);
     });
   }, []);
+
+  const getAllExercisesByWorkoutName = (workoutName) => {
+    axios
+      .get(`/api/exercise/workout/${workoutName}`)
+      .then((res) => {
+        const exerciseNameLists = res.data.map((singleExerciseArray) => {
+          const exerciseName = singleExerciseArray.exerciseName
+          return exerciseName;
+        });
+        setExerciseList(exerciseNameLists);
+      });
+  };
 
   return (
     <Container maxWidth="xl" className={classes.container}>
@@ -200,11 +213,12 @@ const LogWorkout = () => {
             id={`ExerciseName`}
             options={workoutList}
             getOptionLabel={option => option}
+            // onChange={}
             style={{ width: 400 }}
             renderInput={params => (
               <TextField
                 {...params}
-                label="Choose your exercise"
+                label="Choose your Workout"
                 variant="outlined"
               />
             )}
@@ -229,7 +243,7 @@ const LogWorkout = () => {
         <form className={classes.root} noValidate autoComplete="off">
           <Table className={classes.table}>
             <TableBody>
-              {workoutList.map((name, index) => {
+              {exerciseList.map((name, index) => {
                 counter = index;
                 return (
                   <div>
@@ -373,7 +387,8 @@ const LogWorkout = () => {
                     </TableRow>
                   </div>
                 );
-              })}
+              }
+              )} 
             </TableBody>
           </Table>
           <TextField
