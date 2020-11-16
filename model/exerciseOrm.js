@@ -6,14 +6,14 @@ const {
   insertExerciseQuery,
   deleteExerciseById,
   findAllExercisesByMuscle,
-} = require("./exerciseQueries");
+} = require('./exerciseQueries');
 
-const connection = require("../config/connection"); // DB Connection
+const connection = require('../config/connection'); // DB Connection
 /**
  * Gets Excercises by user ID from SQL DB.
  * @param {Number} userId - User ID of who's exercises to return
  */
-const getAllExercisesByUserID = async userId => {
+const getAllExercisesByUserID = async (userId) => {
   try {
     const [results] = await connection.query(findAllExercisesByUserId, userId);
     return results;
@@ -27,7 +27,7 @@ const getAllExercisesByUserID = async userId => {
  * Gets Exercuses by workout ID from SQL DB
  * @param {Number} workoutId - Workout ID of which exercise to return
  */
-const getAllExerciseByWorkoutId = async workoutId => {
+const getAllExerciseByWorkoutId = async (workoutId) => {
   try {
     const [results] = await connection.query(
       findExerciseByWorkoutId,
@@ -42,7 +42,7 @@ const getAllExerciseByWorkoutId = async workoutId => {
  * Finds an Excercise by ID
  * @param {Number} exerciseId - Exercise ID to be found
  */
-const getAnExerciseById = async exerciseId => {
+const getAnExerciseById = async (exerciseId) => {
   try {
     const [results] = await connection.query(findExerciseById, exerciseId);
     return results;
@@ -54,7 +54,7 @@ const getAnExerciseById = async exerciseId => {
  * Finds an Excercise by Name
  * @param {String} exerciseName - Exercise of name.
  */
-const getAllExercisesByName = async exerciseName => {
+const getAllExercisesByName = async (exerciseName) => {
   try {
     const [results] = await connection.query(findExerciseByName, exerciseName);
     return results;
@@ -63,7 +63,7 @@ const getAllExercisesByName = async exerciseName => {
   }
 };
 
-const getAllExercisesByMuscle = async muscleUsed => {
+const getAllExercisesByMuscle = async (muscleUsed) => {
   try {
     const [results] = await connection.query(
       findAllExercisesByMuscle,
@@ -95,29 +95,20 @@ const setExercise = async (exercise, userId) => {
   const {
     exerciseName,
     // muscleUsed,
-    // workoutId,
-    // exerciseDate,
+    exerciseDate,
     setTotal,
-    // repetitionGoalPerSet,
     repetitionsCompletedPerSet,
     weightUsedPerSet,
-    // timeUsedPerSet,
-    // restUsedPerSet,
   } = exercise;
 
   try {
     const [results] = await connection.query(insertExerciseQuery, [
       exerciseName,
-      // muscleUsed,
       userId,
-      // workoutId,
-      // exerciseDate,
+      exerciseDate,
       setTotal,
-      // repetitionGoalPerSet,
       repetitionsCompletedPerSet,
       weightUsedPerSet,
-      // timeUsedPerSet,
-      // restUsedPerSet,
     ]);
     console.log(results);
     const newExercise = await getAnExerciseById(results.insertId);
@@ -131,7 +122,7 @@ const setExercise = async (exercise, userId) => {
  *
  * @param {Number} exerciseId - Deletes an exercise by exercise ID.
  */
-const removeExerciseById = async exerciseId => {
+const removeExerciseById = async (exerciseId) => {
   try {
     const [result] = await connection.query(deleteExerciseById, exerciseId);
     console.log(result);

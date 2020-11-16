@@ -11,7 +11,6 @@ import {
 } from 'recharts';
 
 const VolumeChart = (props) => {
-  console.log(props);
   return (
     <ResponsiveContainer>
       <LineChart

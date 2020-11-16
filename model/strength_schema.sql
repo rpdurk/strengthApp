@@ -17,16 +17,11 @@ CREATE TABLE workouts (
 CREATE TABLE exercises (
     id INT AUTO_INCREMENT NOT NULL,
     exerciseName VARCHAR(255) NOT NULL,
-    -- musclesUsed VARCHAR(255),
     userId INT references users(id),
-    -- workoutId INT references workouts(id),
-    -- exerciseDate DATE NOT NULL,
     setTotal INT NOT NULL,
-    -- repetitionGoalPerSet VARCHAR(255) NOT NULL,
     repetitionsCompletedPerSet VARCHAR(255) NOT NULL,
     weightUsedPerSet VARCHAR(255),
-    -- timeUsedPerSet VARCHAR(255) ,
-    -- restUsedPerSet VARCHAR(255) ,
+    exerciseDate DATE NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE userBiometrics (
