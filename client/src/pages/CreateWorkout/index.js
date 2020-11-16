@@ -9,12 +9,10 @@ import {
   Button,
   Box,
   Icon,
-  FormControl,
 } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useUtils } from "../common";
 import { setUserId } from "../User/UserReducer";
-// import { FormControl } from "@material-ui/core/FormControl";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,9 +23,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
   },
   paper: {
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(5),
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(4),
     marginBottom: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
@@ -40,6 +38,17 @@ const useStyles = makeStyles(theme => ({
 
   row: {
     marginTop: theme.spacing(2),
+  },
+
+  header: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    marginBottom: theme.spacing(4),
+    marginTop: theme.spacing(5),
+    // color: "#ff5722",
+  },
+  addBtn: {
+    marginTop: theme.spacing(5),
   },
 }));
 
@@ -143,29 +152,31 @@ export default function CreateWorkout() {
   }, []);
   return (
     <Container maxWidth="xl" className={classes.container}>
-      <Box>
-        {workoutNameErr ? (
-          <TextField
-            error
-            variant="outlined"
-            id={workoutNameErr ? "outlined-error-helper-text" : "email"}
-            label={workoutNameErr ? "Enter workout name" : "Workout Name"}
-            name="workoutName"
-            onChange={e => setWorkoutName(e.target.value)}
-          />
-        ) : (
-          <TextField
-            required
-            variant="outlined"
-            id="workoutName"
-            label="Workout Name"
-            name="workoutName"
-            onChange={e => setWorkoutName(e.target.value)}
-          />
-        )}
+      <Box border={1} borderRadius={16} className={classes.header}>
+        <h1>Create Workout</h1>
       </Box>
       <Container className={classes.paper} component={Paper}>
-        <h1>Create A Workout</h1>
+        <Box>
+          {workoutNameErr ? (
+            <TextField
+              error
+              variant="outlined"
+              id={workoutNameErr ? "outlined-error-helper-text" : "email"}
+              label={workoutNameErr ? "Enter workout name" : "Workout Name"}
+              name="workoutName"
+              onChange={e => setWorkoutName(e.target.value)}
+            />
+          ) : (
+            <TextField
+              required
+              variant="outlined"
+              id="workoutName"
+              label="Workout Name"
+              name="workoutName"
+              onChange={e => setWorkoutName(e.target.value)}
+            />
+          )}
+        </Box>
         <Box className={classes.addBtn}>
           <Button
             onClick={e => {
