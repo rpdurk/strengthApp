@@ -1,38 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import clsx from 'clsx';
-import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import VolumeChart from './VolumeChart';
-import VolByMuscleChart from './VolByMuscleChart';
-import ChooseMuscle from './ChooseMuscle';
-import FavoriteWorkouts from './FavoriteWorkouts';
-import { useSelector } from 'react-redux';
-import { setUserId } from '../User/UserReducer';
-import { useUtils } from '../common';
-import { CircularProgress, LinearProgress } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import clsx from "clsx";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Container,
+  Grid,
+  Paper,
+  CircularProgress,
+  LinearProgress,
+} from "@material-ui/core/";
+import { setUserId } from "../User/UserReducer";
+import { useUtils } from "../common";
+import ProgressChart from "../common/components/Charts/ProgressChart";
+import ProgressMenu from "../common/components/Charts/ProgressMenu";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    margin: '0 auto',
-    overflow: 'auto',
-    flexDirection: 'column',
-    textAlign: 'center',
+    display: "flex",
+    margin: "0 auto",
+    overflow: "auto",
+    flexDirection: "column",
+    textAlign: "center",
   },
   fixedHeight: {
     height: 350,
   },
-  // thumbnail: {
-  //   width: 400,
-  // },
 }));
 
 const Dashboard = () => {
@@ -42,28 +40,29 @@ const Dashboard = () => {
 
   //TODO: Check Token validity.
   // Get or Set userId
-  let userId = useSelector((state) => state.user.curUserId);
+  let userId = useSelector(state => state.user.curUserId);
 
   if (userId === null) {
-    userId = localStorage.getItem('userId');
+    userId = localStorage.getItem("userId");
     if (!userId) {
-      history.push('/');
+      history.push("/");
     } else {
       dispatch(setUserId(userId));
     }
   }
 
   // Component State
-  const [weeklyVolume, setWeeklyVolume] = useState(null);
-  const [weeklyLifts, setWeeklyLifts] = useState(null);
-  const [weeklyExercises, setWeeklyExercises] = useState(null);
-  const [favoriteWorkouts, setFavoriteWorkouts] = useState(null);
+  const [weeklyVolume, setWeeklyVolume] = useState(0);
+  const [weeklyLifts, setWeeklyLifts] = useState(0);
+  const [weeklyExercises, setWeeklyExercises] = useState(0);
+
+  //
 
   // Functions for Calculating Data
 
-  setTimeout(() => {
-    setWeeklyVolume('waa');
-  }, 5000);
+  // setTimeout(() => {
+  //   setWeeklyVolume("waa");
+  // }, 5000);
 
   const getData = async () => {
     // Axios Request to get exercises
@@ -75,16 +74,16 @@ const Dashboard = () => {
 
       // isEmpty = true ? 'No data to fetch ' : 'There's data'
       if (!isEmpty) {
-        let res = await axios.get('/api/exercise/user/1');
+        let res = await axios.get("/api/exercise/user/1");
 
         if (res) {
-          console.log(res `results console log on 81-dashboard`);
+          console.log(res`results console log on 81-dashboard`);
         }
       } else {
         console.log(`isEmpty ${isEmpty}`);
       }
     } catch (err) {
-      if (typeof err.response !== 'undefined') {
+      if (typeof err.response !== "undefined") {
         switch (err.response.status) {
           case 400: {
             console.log(`Bad Request`);
@@ -111,43 +110,43 @@ const Dashboard = () => {
 
   const data = [
     {
-      name: 'Monday',
+      name: "Monday",
       Previous: 4000,
       Current: 2400,
       amt: 2400,
     },
     {
-      name: 'Tuesday',
+      name: "Tuesday",
       Previous: 3000,
       Current: 1398,
       amt: 2210,
     },
     {
-      name: 'Wednesday',
+      name: "Wednesday",
       Previous: 2000,
       Current: 9800,
       amt: 2290,
     },
     {
-      name: 'Thursday',
+      name: "Thursday",
       Previous: 2780,
       Current: 3908,
       amt: 2000,
     },
     {
-      name: 'Friday',
+      name: "Friday",
       Previous: 1890,
       Current: 4800,
       amt: 2181,
     },
     {
-      name: 'Saturday',
+      name: "Saturday",
       Previous: 2390,
       Current: 3800,
       amt: 2500,
     },
     {
-      name: 'Sunday',
+      name: "Sunday",
       Previous: 3490,
       Current: 4300,
       amt: 2100,
@@ -155,14 +154,12 @@ const Dashboard = () => {
   ];
 
   return (
-    <Container maxWidth='xl' className={classes.container}>
+    <Container maxWidth="xl" className={classes.container}>
       <Grid container spacing={3}>
         {/* Weekly Weight */}
-        <Grid item xs={4} md={4} lg={4}>
+        <Grid item xs={4}>
           <Paper className={classes.paper}>
             <h4>Weekly Volume</h4>
-            {/* <h1>{weeklyVolume} lbs</h1> */}
-
             {weeklyVolume === null ? (
               <LinearProgress />
             ) : (
@@ -171,7 +168,7 @@ const Dashboard = () => {
           </Paper>
         </Grid>
         {/* Weekly Lifts */}
-        <Grid item xs={4} md={4} lg={4}>
+        <Grid item xs={4}>
           <Paper className={classes.paper}>
             <h4>Lifts This Week</h4>
             {/* <h1>{weeklyLifts}</h1> */}
@@ -183,7 +180,7 @@ const Dashboard = () => {
           </Paper>
         </Grid>
         {/* Weekly total excersises */}
-        <Grid item xs={4} md={4} lg={4}>
+        <Grid item xs={4}>
           <Paper className={classes.paper}>
             <h4>Weekly Exercises</h4>
             {/* <h1>{weeklyExercises}</h1> */}
@@ -195,31 +192,12 @@ const Dashboard = () => {
           </Paper>
         </Grid>
         {/* Weekly Volume */}
-        <Grid item xs={12} md={8} lg={9}>
+        <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
             <h1>Weekly Volume</h1>
-            <VolumeChart data={data} />
-          </Paper>
-        </Grid>
-        {/* Muscles Used */}
-        <Grid item xs={12} md={4} lg={3}>
-          <Paper className={fixedHeightPaper}>
-            <h1>Muscles Used</h1>
-            <VolByMuscleChart />
-          </Paper>
-        </Grid>
-        {/* Favorites */}
-        <Grid item xs={12} md={6} lg={6}>
-          <Paper className={classes.paper}>
-            <h1>Favorite Workouts</h1>
 
-            <FavoriteWorkouts />
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={6} lg={6}>
-          <Paper className={classes.paper}>
-            <h1>Choose Muscle</h1>
-            <ChooseMuscle />
+            <ProgressMenu />
+            <ProgressChart data={data} />
           </Paper>
         </Grid>
       </Grid>
