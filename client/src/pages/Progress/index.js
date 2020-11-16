@@ -1,9 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import { Container, Box, Grid, Paper, makeStyles } from "@material-ui/core";
 import BodyWeightChart from "../common/components/Charts/BodyWeightChart";
 import BMIChart from "../common/components/Charts/BMIChart";
 import ProgressChart from "../common/components/Charts/ProgressChart";
@@ -21,6 +18,19 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     textAlign: "center",
   },
+  header: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    marginBottom: theme.spacing(7),
+    marginTop: theme.spacing(6),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  headerPadding: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
   fixedHeight: {
     height: 350,
   },
@@ -35,6 +45,11 @@ const Progress = () => {
   const largeChartPaper = clsx(classes.paper, classes.largeChart);
   return (
     <Container maxWidth="xl" className={classes.container}>
+      <Container className={classes.header}>
+        <Box border={1} borderRadius={16} className={classes.headerPadding}>
+          <h1>Progress</h1>
+        </Box>
+      </Container>
       <Grid container spacing={3}>
         {/* Progress Chart */}
         <Grid item xs={12} md={12} lg={12} xl={12}>
