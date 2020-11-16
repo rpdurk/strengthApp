@@ -1,41 +1,19 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import axios from 'axios';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Select from '@material-ui/core/Select';
-import clsx from 'clsx';
-import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Icon from '@material-ui/core/Icon';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Alert from '@material-ui/lab/Alert';
-import { CircularProgress, LinearProgress } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useUtils } from '../common';
 import { setUserId } from '../User/UserReducer';
 import uniqid from 'uniqid';
-import {
-  FilledInput,
-  Grid,
-  InputAdornment,
-  OutlinedInput,
-} from '@material-ui/core';
+import { Grid, InputAdornment, OutlinedInput } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -156,19 +134,13 @@ const LogWorkout = () => {
   };
 
   const getToday = () => {
-    var today = new Date();
-    var DD = String(today.getDate()).padStart(2, '0');
-    var MM = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var YYYY = today.getFullYear();
+    let today = new Date();
+    let DD = String(today.getDate()).padStart(2, '0');
+    let MM = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let YYYY = today.getFullYear();
 
     return `${YYYY}-${MM}-${DD}`;
   };
-
-  // ID Structure
-  // 'sets'+ exerciseName+index.toString()
-  // 'reps'+ exerciseName+index.toString()
-  // 'weight'+ exerciseName+index.toString()
-  // 'date'+ exerciseName+index.toString()
 
   let counter = 0;
 
@@ -255,7 +227,7 @@ const LogWorkout = () => {
             id='workoutIds'
             options={workoutNames}
             getOptionLabel={(option) => option}
-            onChange={(event, newValue) => setSelectedWorkout(newValue)}
+            onChange={(_event, newValue) => setSelectedWorkout(newValue)}
             style={{ width: 400 }}
             renderInput={(params) => (
               <TextField
@@ -355,7 +327,5 @@ const LogWorkout = () => {
     </Container>
   );
 };
-
-// Sets Reps and Weight -> Completed
 
 export default LogWorkout;
