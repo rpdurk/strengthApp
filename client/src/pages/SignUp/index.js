@@ -74,38 +74,15 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete='fname'
-                name='firstName'
-                variant='outlined'
-                // required
-                fullWidth
-                id='firstName'
-                label='First Name'
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant='outlined'
-                // required
-                fullWidth
-                id='lastName'
-                label='Last Name'
-                name='lastName'
-                autoComplete='lname'
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant='outlined'
                 required
                 fullWidth
-                id='email'
-                label='Email Address'
-                name='email'
-                autoComplete='email'
+                id='username'
+                label='Username'
+                name='username'
+                autoComplete='username'
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
@@ -124,12 +101,6 @@ export default function SignUp() {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value='allowExtraEmails' color='primary' />}
-                label='I want to receive inspiration, promotions and updates via email.'
               />
             </Grid>
           </Grid>

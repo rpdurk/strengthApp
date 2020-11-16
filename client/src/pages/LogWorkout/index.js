@@ -190,7 +190,8 @@ const LogWorkout = () => {
         weightUsedPerSet === '' ||
         exerciseDate === ''
       ) {
-        setInputError(true);
+        // setInputError(true);
+        console.log(`Inputs missing.`);
       } else {
         axios.post(`/api/exercise/add/${userId}`, {
           exerciseName,
