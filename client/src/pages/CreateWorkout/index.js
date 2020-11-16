@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
   },
   paper: {
-    paddingTop: theme.spacing(5),
+    paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(5),
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
@@ -165,6 +165,7 @@ export default function CreateWorkout() {
         )}
       </Box>
       <Container className={classes.paper} component={Paper}>
+        <h1>Create A Workout</h1>
         <Box className={classes.addBtn}>
           <Button
             onClick={e => {

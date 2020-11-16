@@ -4,12 +4,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import BodyWeightChart from "./BodyWeightChart";
-import BMIChart from "./BMIChart";
-import ProgressChart from "./ProgressChart";
-import ProgressMenu from "./ProgressMenu";
+import BodyWeightChart from "../common/components/Charts/BodyWeightChart";
+import BMIChart from "../common/components/Charts/BMIChart";
+import ProgressChart from "../common/components/Charts/ProgressChart";
+import ProgressMenu from "../common/components/Charts/ProgressMenu";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
