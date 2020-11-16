@@ -7,7 +7,6 @@ import Paper from "@material-ui/core/Paper";
 import BodyWeightChart from "../common/components/Charts/BodyWeightChart";
 import BMIChart from "../common/components/Charts/BMIChart";
 import ProgressChart from "../common/components/Charts/ProgressChart";
-import ProgressMenu from "../common/components/Charts/ProgressMenu";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -40,7 +39,6 @@ const Progress = () => {
         {/* Progress Chart */}
         <Grid item xs={12} md={12} lg={12} xl={12}>
           <Paper className={largeChartPaper}>
-            <ProgressMenu />
             <ProgressChart />
           </Paper>
         </Grid>

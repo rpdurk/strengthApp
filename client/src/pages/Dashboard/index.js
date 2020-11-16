@@ -13,7 +13,9 @@ import {
 import { setUserId } from "../User/UserReducer";
 import { useUtils } from "../common";
 import ProgressChart from "../common/components/Charts/ProgressChart";
-import ProgressMenu from "../common/components/Charts/ProgressMenu";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -55,8 +57,47 @@ const Dashboard = () => {
   const [weeklyVolume, setWeeklyVolume] = useState(0);
   const [weeklyLifts, setWeeklyLifts] = useState(0);
   const [weeklyExercises, setWeeklyExercises] = useState(0);
+  const [allExercises, setAllExercises] = useState([]);
+  const [selectedExercise, setSelectedExercise] = useState("");
+  const [reRender, setReRender] = useState(true); // Boolean For useEffect -> To Prevent Re Renders
+  const [allExercisesByName, setAllExercisesByName] = useState([]);
 
-  //
+  // Pull Data from Db
+
+  useEffect(() => {
+    if (reRender) {
+      // Get Workout List from Backend
+      axios.get(`/api/exercise/user/${userId}`).then(({ data }) => {
+        // Save Full Object to state
+        setAllExercises(data);
+        console.log(data);
+        // Get Names and IDs from workouts
+        const resExerciseNames = data.map(exercise => exercise.exerciseName);
+        // const resWorkoutIds = data.map((workout) => workout.id);
+
+        setAllExercises(resExerciseNames);
+        // setWorkoutIds(resWorkoutIds);
+        setReRender(false);
+
+        console.log(`Log Component Rendered`, resExerciseNames);
+      }); // Axios Get
+    }
+  }, [reRender, selectedExercise]);
+
+  const filterExercises = () => {
+    let tempArr;
+
+    allExercises.forEach(exercise => {
+      if (exercise.exerciseName === selectedExercise) {
+        console.log(`pass`);
+
+        tempArr = exercise.exerciseName;
+      }
+    });
+
+    // Set Exercise List
+    setAllExercisesByName(JSON.parse(tempArr));
+  };
 
   // Functions for Calculating Data
 
@@ -110,46 +151,20 @@ const Dashboard = () => {
 
   const data = [
     {
-      name: "Monday",
-      Previous: 4000,
-      Current: 2400,
-      amt: 2400,
+      date: 2020 - 11 - 11,
+      Weight: 4000,
     },
     {
-      name: "Tuesday",
-      Previous: 3000,
-      Current: 1398,
-      amt: 2210,
+      date: 2020 - 11 - 12,
+      Weight: 2000,
     },
     {
-      name: "Wednesday",
-      Previous: 2000,
-      Current: 9800,
-      amt: 2290,
+      date: 2020 - 11 - 13,
+      Weight: 4000,
     },
     {
-      name: "Thursday",
-      Previous: 2780,
-      Current: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Friday",
-      Previous: 1890,
-      Current: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Saturday",
-      Previous: 2390,
-      Current: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Sunday",
-      Previous: 3490,
-      Current: 4300,
-      amt: 2100,
+      date: 2020 - 11 - 14,
+      Weight: 3000,
     },
   ];
 
@@ -179,7 +194,7 @@ const Dashboard = () => {
             )}
           </Paper>
         </Grid>
-        {/* Weekly total excersises */}
+        {/* Weekly total exercises */}
         <Grid item xs={4}>
           <Paper className={classes.paper}>
             <h4>Weekly Exercises</h4>
@@ -194,7 +209,23 @@ const Dashboard = () => {
         {/* Weekly Volume */}
         <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
-            <ProgressMenu />
+            {/* <ProgressMenu /> */}
+            <FormControl className={classes.centerInput}>
+              <Autocomplete
+                id="exerciseChart"
+                options={allExercises}
+                getOptionLabel={option => option}
+                onChange={(event, newValue) => setSelectedExercise(newValue)}
+                style={{ width: 400 }}
+                renderInput={params => (
+                  <TextField
+                    {...params}
+                    label="Choose your Exercise"
+                    variant="outlined"
+                  />
+                )}
+              />
+            </FormControl>
             <ProgressChart data={data} />
           </Paper>
         </Grid>
