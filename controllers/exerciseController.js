@@ -5,7 +5,7 @@ const {
   getAllExercisesByName,
   setExercise,
   removeExerciseById,
-} = require("../model/exerciseOrm");
+} = require('../model/exerciseOrm');
 
 const checkExercises = async (req, res) => {
   console.log(`CHECK EXERCISES`);
@@ -103,60 +103,17 @@ const returnAllExercisesByName = async (req, res) => {
  */
 
 const addExercise = async (req, res) => {
-  console.log(req.user);
-  console.log(req.body);
+  console.log('PARAMS', req.params.userId);
+  console.log('BODY', req.body);
   try {
-    const newExercise = await setExercise(req.body, req.user.id);
+    const newExercise = await setExercise(req.body, req.params.userId);
     console.log(newExercise);
     res.json(newExercise);
   } catch (e) {
-    console.log("L:113 exerciseController", e);
+    console.log('ExerciseController', e);
     res.json(e);
   }
 };
-// const addExercise = async (req, res) => {
-//   console.log(`ADD AN EXERCISE`);
-
-//   const reObject = req.body;
-//   let empty = false;
-
-//   // Array of Keys to test if these exist
-//   const keys = [
-//     'exerciseName',
-//     'muscleUsed',
-//     'userId',
-//     'workoutId',
-//     'exerciseDate',
-//     'setTotal',
-//     'reptitionGoalPerSet',
-//     'reptitionsCompletedPerSet',
-//     'weightUsedPerSet',
-//     'timeUsedPerSet',
-//     'restUsedPerSet',
-//   ];
-
-//   // Check the validity of Object -> Not empty and Length is 11
-//   if (Object.keys(reObject).length === 11) {
-//     keys.forEach((el) => {
-//       if (typeof reObject[el] === 'undefined') {
-//         empty = true;
-//       }
-//     });
-//   } else {
-//     empty = true;
-//   }
-
-//   // Add exercise to DB if Object is fine.
-//   if (!empty) {
-//     await setExercise(req.body);
-//     res.json({ success: true });
-//   } else {
-//     res.json({
-//       success: false,
-//       msg: 'Object Invalid, missing data or does not exist.',
-//     });
-//   }
-// };
 
 /**
  * Deletes an exercise by exerciseId
