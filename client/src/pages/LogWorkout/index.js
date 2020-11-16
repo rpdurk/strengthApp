@@ -138,6 +138,7 @@ const LogWorkout = () => {
   const [reRender, setReRender] = useState(true); // Boolean For useEffect -> To Prevent Re Renders
   const [selectedWorkout, setSelectedWorkout] = useState('');
   const [inputError, setInputError] = useState(false);
+  const [pushSuccess, setPushSuccess] = useState(false);
 
   const filterExerciseList = () => {
     let tempArr;
@@ -172,6 +173,7 @@ const LogWorkout = () => {
   let counter = 0;
 
   const handleSubmit = (e) => {
+    let didItPass = true;
     // Loop through exercise inputs and get data
     e.preventDefault();
 
@@ -192,6 +194,7 @@ const LogWorkout = () => {
       ) {
         // setInputError(true);
         console.log(`Inputs missing.`);
+        didItPass = false;
       } else {
         axios.post(`/api/exercise/add/${userId}`, {
           exerciseName,
@@ -201,6 +204,13 @@ const LogWorkout = () => {
           exerciseDate,
         });
       }
+    }
+
+    if (didItPass) {
+      setPushSuccess(true);
+      setTimeout(() => {
+        setPushSuccess(false);
+      }, 2000);
     }
   };
 
@@ -310,6 +320,11 @@ const LogWorkout = () => {
                   );
                 })}
           </Grid>
+          {pushSuccess ? (
+            <Alert className={classes.alert} severity='success'>
+              Saved!
+            </Alert>
+          ) : null}
           {exerciseList.length !== 0 ? (
             <Box display='flex' justifyContent='center' p={2}>
               <TextField
