@@ -171,8 +171,9 @@ const LogWorkout = () => {
 
   let counter = 0;
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     // Loop through exercise inputs and get data
+    e.preventDefault();
 
     for (let i = 0; i <= counter; i++) {
       let exerciseName = document.getElementById(`exerciseName${i}`).innerText;
@@ -190,11 +191,7 @@ const LogWorkout = () => {
         exerciseDate === ''
       ) {
         setInputError(true);
-        setTimeout(() => {
-          setInputError(false);
-        }, 3000);
       } else {
-        console.log(`No empty huh?`);
         axios.post(`/api/exercise/add/${userId}`, {
           exerciseName,
           setTotal,
