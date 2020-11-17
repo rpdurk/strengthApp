@@ -1,16 +1,16 @@
 <!-- Iron Dojo - Track Your Strength -->
 
 <p align="center">
-    [![Contributors][contributors-shield]][https://github.com/rpdurk/strengthApp/graphs/contributors]
-    [![Forks][forks-shield]][https://github.com/rpdurk/strengthApp/network/members]
-    [![MIT License][license-shield]][license-url]
+    [![Contributors][contributors-shield]][(https://github.com/rpdurk/strengthApp/graphs/contributors)]
+    [![Forks][forks-shield]][(https://github.com/rpdurk/strengthApp/network/members)]
+    [![MIT License][license-shield]][(https://img.shields.io/badge/license-MIT)]
     <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 </p>
 
 <br />
 <p align="center">
   <a href="https://the-iron-dojo.herokuapp.com/">
-    <img src="./projectImages/ironDojologo.png" alt="Logo" width="80" height="80">
+    <img src="./projectImages/ironDojologo.png" alt="Logo" width="360" height="180">
   </a>
 
   <h3 align="center">Iron Dojo</h3>
@@ -82,7 +82,11 @@ The primary purpose of this project is to make, log, and track your strength tra
 
 ## Contributing
 
-Contributions for this web application was made by [Ryan Durk](https://github.com/rpdurk), [Jeff Hogg](https://github.com/bosshogg86), [Qian Hu](https://github.com/huqian301), and [Muhammad Kamran](https://github.com/mkamran67).
+Contributions for this web application was made by 
+* [Ryan Durk](https://github.com/rpdurk), 
+* [Jeff Hogg](https://github.com/bosshogg86), 
+* [Qian Hu](https://github.com/huqian301), and 
+* [Muhammad Kamran](https://github.com/mkamran67).
 
 
 <!-- LICENSE -->
@@ -95,9 +99,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Please contact any of as at:
 
-Ryan Durk - [https://github.com/rpdurk](https://github.com/rpdurk)
-Jeff Hogg - [https://github.com/bosshogg86](https://github.com/bosshogg86)
-Qian Hu - [https://github.com/huqian301](https://github.com/huqian301)
-Muhammad Kamran - [https://github.com/mkamran67](https://github.com/mkamran67)
+* Ryan Durk - [https://github.com/rpdurk](https://github.com/rpdurk)
+* Jeff Hogg - [https://github.com/bosshogg86](https://github.com/bosshogg86)
+* Qian Hu - [https://github.com/huqian301](https://github.com/huqian301)
+* Muhammad Kamran - [https://github.com/mkamran67](https://github.com/mkamran67)
 
 Project Link: [https://github.com/rpdurk/strengthApp](https://github.com/rpdurk/strengthApp)
