@@ -1,10 +1,10 @@
 <!-- Iron Dojo - Track Your Strength -->
 
 <p align="center">
-    [![Contributors][contributors-shield]][(https://github.com/rpdurk/strengthApp/graphs/contributors)]
-    [![Forks][forks-shield]][(https://github.com/rpdurk/strengthApp/network/members)]
+    [![Contributors][https://img.shields.io/github.com/rpdurk/strengthApp]][(https://github.com/rpdurk/strengthApp/graphs/contributors)]
+    [![GitHub forks](https://img.shields.io/github/forks/rpdurk/strengthApp)](https://github.com/rpdurk/strengthApp/network/members)
+    [![GitHub Issues](https://img.shields.io/github/issues/rpdurk/strengthApp)](https://github.com/rpdurk/strengthApp/issues)
     [![MIT License][license-shield]][(https://img.shields.io/badge/license-MIT)]
-    <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 </p>
 
 <br />
@@ -44,7 +44,10 @@
 Exercise is medicine and can take all modes from running, team sports, active-virtual-reality games, and of course strength training.  Most applications are designed for the aerobic exercise enthusiast, but strength training has been show to be incredibly important for health.  Wether you are trying to get stronger or simply want to monitor your training, come to the Iron Dojo.
 
 Benefits of Strength Training:
-* ?????????????????????????????????????????????????????????????
+* Protects bone health
+* Improved strength
+* Improved biological health markers (e.g. blood pressure, etc.)
+
 
 Try tracking your progress to understand where your training is headed.
 
