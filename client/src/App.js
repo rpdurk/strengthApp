@@ -26,7 +26,7 @@ function App() {
         <Route exact path='/' component={SignIn} />
         <Route path='/signup' component={SignUp} />
         <Route
-          path={['/dashboard', '/create', '/log', '/progress', '/account']}
+          path={['/dashboard', '/create', '/log']}
         >
           <Drawer>
             <Switch>
@@ -39,12 +39,12 @@ function App() {
               <Route exact path='/log'>
                 {viewer.token ? <LogWorkout /> : <Redirect to='/' />}
               </Route>
-              <Route exact path='/progress'>
+              {/* <Route exact path='/progress'>
                 {viewer.token ? <Progress /> : <Redirect to='/' />}
               </Route>
               <Route exact path='/account'>
                 {viewer.token ? <Account /> : <Redirect to='/' />}
-              </Route>
+              </Route> */}
             </Switch>
           </Drawer>
         </Route>

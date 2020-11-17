@@ -136,18 +136,18 @@ const PersistentDrawerLeft = props => {
       icon: <FitnessCenterIcon />,
       onClick: () => history.push("/log"),
     },
-    {
-      text: "Progress",
-      icon: <TrendingUpIcon />,
-      onClick: () => history.push("/progress"),
-    },
+    // {
+    //   text: "Progress",
+    //   icon: <TrendingUpIcon />,
+    //   onClick: () => history.push("/progress"),
+    // },
   ];
   const accountItems = [
-    {
-      text: "Account Details",
-      icon: <SettingsIcon />,
-      onClick: () => history.push("/account"),
-    },
+    // {
+    //   text: "Account Details",
+    //   icon: <SettingsIcon />,
+    //   onClick: () => history.push("/account"),
+    // },
     {
       text: "Sign Out",
       icon: <ExitToAppIcon />,

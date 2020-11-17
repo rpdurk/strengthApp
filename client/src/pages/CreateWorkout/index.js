@@ -13,6 +13,7 @@ import {
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useUtils } from "../common";
 import { setUserId } from "../User/UserReducer";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -50,6 +51,11 @@ const useStyles = makeStyles(theme => ({
   addBtn: {
     marginTop: theme.spacing(5),
   },
+  alert: {
+    color: "#FF5722",
+    maxWidth: "25%",
+    margin: "0.4rem auto",
+  },
 }));
 
 export default function CreateWorkout() {
@@ -58,6 +64,7 @@ export default function CreateWorkout() {
   const [exercise, setExercise] = useState([]);
   const [workoutNameErr, setWorkoutNameErr] = useState(false);
   const [exerciseNameErr, setExerciseNameErr] = useState(false);
+  const [pushSuccess, setPushSuccess] = useState(false);
 
   const { dispatch, history } = useUtils();
 
@@ -81,6 +88,7 @@ export default function CreateWorkout() {
 
   // Create Workout click
   const handleSubmit = e => {
+    let didItPass = true;
     e.preventDefault();
 
     //Requires workout name
@@ -122,6 +130,13 @@ export default function CreateWorkout() {
       axios.post("/api/workout/addWorkout", workoutObj).then(res => {
         console.log(res.data);
       });
+
+      if (didItPass) {
+        setPushSuccess(true);
+        setTimeout(() => {
+          setPushSuccess(false);
+        }, 2000);
+      }
 
       // Clears exercises
       counter = 0;
@@ -219,6 +234,11 @@ export default function CreateWorkout() {
         })}
       </Container>
       <Box>
+      {pushSuccess ? (
+            <Alert className={classes.alert} severity="success">
+              Saved!
+            </Alert>
+          ) : null}
         <Button
           className={classes.createBtn}
           onClick={handleSubmit}
