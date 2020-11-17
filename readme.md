@@ -1,33 +1,103 @@
-Step 1 Clone this repo somewhere in your machine
-Step 2 is cd into this repo, and then run 
-MAC rm -rf .git
-Windows Powershell rm -force .git
+<!-- Iron Dojo - Track Your Strength -->
 
-Step 3 git init
-Step 4 git add -A
-Step 5 git commit -m 'Init repo'
-Step 6 Make a git repo
-Step 7 copy the git remote add origin line and paste it to your repo
-Step 8 git push -u origin master
-Step 9 Add your team members to the repo
-Step 10 protect the master branch just in case people merge changes to master
+<p align="center">
+    [![Contributors][contributors-shield]][https://github.com/rpdurk/strengthApp/graphs/contributors]
+    [![Forks][forks-shield]][https://github.com/rpdurk/strengthApp/network/members]
+    [![MIT License][license-shield]][license-url]
+    <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
+</p>
+
+<br />
+<p align="center">
+  <a href="https://the-iron-dojo.herokuapp.com/">
+    <img src="./projectImages/ironDojologo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Iron Dojo</h3>
+
+  <p align="center">
+    A web application that allows you to track your strength.
+    <br />
+    <a href="https://the-iron-dojo.herokuapp.com/"><strong>Explore the Iron Dojo »</strong></a>
+    <br />
+  </p>
+</p>
 
 
-Proj 2 Requirements
-Must use a Node and Express web server
-Must be backed by a SQL Database
-Must be deployed to Heroku with data
-Must have a polished UI
-Must have a folder structure that meets the MVC paradigm
-Must Use React
-Must meet good quality coding standards (indentation etc)
-Must have GET and POST request for creating and getting data
-Must protect API keys in Node with environmental Variables
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Visit the Site](#visitTheSite)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
 
 
-You need to create a .env file that has a JWT_SECRET.
-The content of the file should look like the code below.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-JWT_SECRET=asdyuofgayudagdyuadsgar837rgsdada
- DUE DATE ON  NOVEMBER 14
+[![Product Name Screen Shot][product-screenshot]](https://the-iron-dojo.herokuapp.com/)
 
+Exercise is medicine and can take all modes from running, team sports, active-virtual-reality games, and of course strength training.  Most applications are designed for the aerobic exercise enthusiast, but strength training has been show to be incredibly important for health.  Wether you are trying to get stronger or simply want to monitor your training, come to the Iron Dojo.
+
+Benefits of Strength Training:
+* ?????????????????????????????????????????????????????????????
+
+Try tracking your progress to understand where your training is headed.
+
+### Built With
+* [React](https://reactjs.org/)
+* [Material-UI](https://material-ui.com/)
+* [JavaScript](https://www.javascript.com/)
+* [heroku](https://www.heroku.com/home)
+* [wger API](https://wger.de/en/software/api)
+
+
+## Visit The Site
+
+Visit the live website at [Here](https://the-iron-dojo.herokuapp.com/)
+
+
+## Usage
+
+The primary purpose of this project is to make, log, and track your strength training. Take a look on how to do that!
+
+1. Sign Up!
+    ![Sign Up](./projectImages/signIn.png)
+
+2. Sign In
+    ![Sign In](./projectImages/signUp.png)
+
+3. Create your first workout.  Name it, choose the right exercises, and save when you are ready!
+    ![Create Workout](./projectImages/create.gif)
+
+4. Log the sets, repetitions, weight and select the date the workout was completed on.
+    ![Log Workout](./projectImages/Log.gif)
+
+5. Chart your Progress by selecting an exercise you want to review.
+    ![Dashboard](./projectImages/dashboard.gif)
+
+## Contributing
+
+Contributions for this web application was made by [Ryan Durk](https://github.com/rpdurk), [Jeff Hogg](https://github.com/bosshogg86), [Qian Hu](https://github.com/huqian301), and [Muhammad Kamran](https://github.com/mkamran67).
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+## Contact
+
+Please contact any of as at:
+
+Ryan Durk - [https://github.com/rpdurk](https://github.com/rpdurk)
+Jeff Hogg - [https://github.com/bosshogg86](https://github.com/bosshogg86)
+Qian Hu - [https://github.com/huqian301](https://github.com/huqian301)
+Muhammad Kamran - [https://github.com/mkamran67](https://github.com/mkamran67)
+
+Project Link: [https://github.com/rpdurk/strengthApp](https://github.com/rpdurk/strengthApp)
