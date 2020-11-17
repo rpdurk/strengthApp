@@ -186,7 +186,7 @@ const Dashboard = () => {
           <h1>Dashboard</h1>
         </Box>
       </Container>
-      {/* <Grid container spacing={3}> */}
+      <Grid container spacing={3}>
         {/* Weekly Weight */}
         {/* <Grid item xs={4}>
           <Paper className={classes.paper}>
@@ -203,25 +203,25 @@ const Dashboard = () => {
           <Paper className={classes.paper}>
             <h4>Lifts This Week</h4>
             {/* <h1>{weeklyLifts}</h1> */}
-            {weeklyVolume === null ? (
-              <LinearProgress />
-            ) : (
-              <h1>{weeklyLifts} lbs</h1>
-            )}
-          </Paper>
-        </Grid> */}
+             {/* {weeklyVolume === null ? (  */}
+              {/* // <LinearProgress />
+            // ) : (
+              // <h1>{weeklyLifts} lbs</h1>
+            // )} */}
+          {/* </Paper> */}
+        {/* </Grid> */}
         {/* Weekly total exercises */}
         {/* <Grid item xs={4}>
           <Paper className={classes.paper}>
-            <h4>Weekly Exercises</h4>
+            <h4>Weekly Exercises</h4> */}
             {/* <h1>{weeklyExercises}</h1> */}
-            {weeklyVolume === null ? (
-              <LinearProgress />
-            ) : (
-              <h1>{weeklyExercises} lbs</h1>
-            )}
-          </Paper>
-        </Grid> */}
+            {/* {weeklyVolume === null ? ( */}
+               {/* <LinearProgress /> */}
+             {/* ) : (
+               <h1>{weeklyExercises} lbs</h1>
+             )} */}
+          {/* </Paper>
+        </Grid>  */}
         {/* Weekly Volume */}
         <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
