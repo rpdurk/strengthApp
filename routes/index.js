@@ -10,7 +10,7 @@ const signInMiddleware = require('../middlewares/signInMiddleware');
 
 // ignore singInMiddleware for now
 
-router.use('/signup', express.static('client/build'));
+// router.use('/signup', express.static('client/build'));
 
 // -> /api/exercise
 router.use('/api/exercise', exerciseRoutes);
