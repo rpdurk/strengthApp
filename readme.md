@@ -1,10 +1,10 @@
 <!-- Iron Dojo - Track Your Strength -->
 
 <p align="center">
-    [![Contributors][https://img.shields.io/github/issues/rpdurk/strengthApp?style=plastic]]
-    [![GitHub forks](https://img.shields.io/github/forks/rpdurk/strengthApp?style=plastic)](https://img.shields.io/github/forks/rpdurk/strengthApp?style=plastic)
+    ![https://img.shields.io/github/issues/rpdurk/strengthApp?style=plastic](https://img.shields.io/github/issues/rpdurk/strengthApp?style=plastic)
+    ![https://img.shields.io/github/forks/rpdurk/strengthApp?style=plastic](https://img.shields.io/github/forks/rpdurk/strengthApp?style=plastic)
     [![GitHub Issues](https://img.shields.io/github/issues/rpdurk/strengthApp)](https://github.com/rpdurk/strengthApp/issues)
-    [![MIT License][license-shield]][(https://img.shields.io/badge/license-MIT)]
+    ![MIT License](https://img.shields.io/badge/license-MIT)
 </p>
 
 <br />
