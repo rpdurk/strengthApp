@@ -41,15 +41,17 @@
 
 [The Iron Dojo](https://the-iron-dojo.herokuapp.com/)
 
-Exercise is medicine and can take all modes from running, team sports, active-virtual-reality games, and of course strength training.  Most applications are designed for the aerobic exercise enthusiast, but strength training has been show to be incredibly important for health.  Wether you are trying to get stronger or simply want to monitor your training, come to the Iron Dojo.
+Exercise is medicine. Physical activity comes in a wide variety of modes including running, team sports, active-virtual-reality games, and of course strength training.  Most web applications are designed for the aerobic exercise enthusiast in mind, but strength training has been show to be incredibly important for health.  
 
-Benefits of Strength Training:
-* Protects bone health
-* Improved strength
-* Improved biological health markers (e.g. blood pressure, etc.)
+In a [2012 peer reviewed paper by Westcott](https://journals.lww.com/acsm-csmr/Fulltext/2012/07000/Resistance_Training_is_Medicine___Effects_of.13.aspx) the benefits of strength training are thoroughly described.  Some of the health benefits that this style of exercise can confer include (but not limited to):
 
+* increase muscle mass or reduce the loss of muscle mass
+* increase resting metabolic rate
+* help in managing metabolic disorders (e.g. obesity, Type II Diabetes, etc.)
+* improve bone mineral density
+* improve mental health
 
-Try tracking your progress to understand where your training is headed.
+Wether you are looking to improve your health, improve your strength, or simply want to monitor your training, come to the Iron Dojo.  Tracking your progress to understand where your training is headed.
 
 ### Built With
 * [React](https://reactjs.org/)
@@ -95,7 +97,7 @@ Contributions for this web application was made by
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+MIT License
 
 <!-- CONTACT -->
 ## Contact
