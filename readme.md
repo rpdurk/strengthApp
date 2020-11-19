@@ -1,7 +1,7 @@
 <!-- Iron Dojo - Track Your Strength -->
 
 <p align="center">
-    [![Contributors][https://img.shields.io/github.com/rpdurk/strengthApp]][(https://github.com/rpdurk/strengthApp/graphs/contributors)]
+    [![Contributors][https://github.com/rpdurk/strengthApp/graphs/contributors]][(https://github.com/rpdurk/strengthApp/graphs/contributors)]
     [![GitHub forks](https://img.shields.io/github/forks/rpdurk/strengthApp)](https://github.com/rpdurk/strengthApp/network/members)
     [![GitHub Issues](https://img.shields.io/github/issues/rpdurk/strengthApp)](https://github.com/rpdurk/strengthApp/issues)
     [![MIT License][license-shield]][(https://img.shields.io/badge/license-MIT)]
@@ -39,7 +39,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://the-iron-dojo.herokuapp.com/)
+[The Iron Dojo](https://the-iron-dojo.herokuapp.com/)
 
 Exercise is medicine and can take all modes from running, team sports, active-virtual-reality games, and of course strength training.  Most applications are designed for the aerobic exercise enthusiast, but strength training has been show to be incredibly important for health.  Wether you are trying to get stronger or simply want to monitor your training, come to the Iron Dojo.
 
