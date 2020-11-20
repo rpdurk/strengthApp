@@ -1,10 +1,21 @@
 <!-- Iron Dojo - Track Your Strength -->
 
 <p align="center">
-    [![Contributors](https://img.shields.io/github/issues/rpdurk/strengthApp?style=plastic)](https://github.com/rpdurk/strengthApp/graphs/contributors)
-    [![GitHub forks](https://img.shields.io/github/forks/rpdurk/strengthApp?style=plastic)](https://github.com/rpdurk/strengthApp/network/members)
-    [![GitHub Issues](https://img.shields.io/github/issues/rpdurk/strengthApp)](https://github.com/rpdurk/strengthApp/issues)
-    [![MIT License](https://img.shields.io/badge/license-MIT)]
+    
+  <a href="https://github.com/rpdurk/strengthApp/graphs/contributors" alt="Contributors">
+          <img src="https://img.shields.io/github/contributors/rpdurk/strengthApp?style=plastic" /></a>
+          
+  <a href="https://github.com/rpdurk/strengthApp/network/members" alt="Forks">
+          <img src="https://img.shields.io/github/forks/rpdurk/strengthApp?style=plastic" /></a>
+  
+  <a href="https://github.com/rpdurk/strengthApp/issues" alt="Issues">
+          <img src="https://img.shields.io/github/issues/rpdurk/strengthApp" /></a>
+          
+  <a href="https://github.com/rpdurk/strengthApp/pulls" alt="Pull">
+          <img src="https://img.shields.io/github/issues-pr/rpdurk/strengthApp" /></a>
+          
+  <a href="https://github.com/rpdurk/strengthApp/pulls" alt="Pull">
+          <img src="https://img.shields.io/github/issues-pr-closed/rpdurk/strengthApp" /></a>
 </p>
 
 <br />
